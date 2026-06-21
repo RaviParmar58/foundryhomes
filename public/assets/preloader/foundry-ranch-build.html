@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundry Homes build animation</title>
+<style>
+  *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent!important;color-scheme:dark} body{min-height:100vh;display:grid;place-items:center;background:transparent!important} .stage{width:100%;height:100vh;display:grid;place-items:center;background:transparent!important} .preview{width:100%;display:grid;place-items:center;background:transparent!important}.scene{width:min(82vw,560px);max-height:72vh;display:grid;place-items:center;background:transparent!important}svg{width:100%;height:auto;display:block;overflow:hidden;background:transparent!important}  /* siding */
+  .wht-f{fill:#ECEAE2} .wht-s{fill:#D7D3C9} .wht-p{fill:#C7C2B7}
+  .lap line{stroke:#C4BFB2;stroke-width:.7;opacity:.55}
+  .found{fill:#BDB7A8} .found-d{fill:#A39D8E}
+  /* roof */
+  .rf-front{fill:#3c3c39} .rf-rhip{fill:#313130} .rf-back{fill:#28282a} .rf-lhip{fill:#2c2c2a}
+  .hipline line{stroke:#54534d;stroke-width:1.1;opacity:.85}
+  .porch-ceil{fill:#9c9a93;opacity:.5}
+  /* openings */
+  .win{fill:#2b3338} .winframe{fill:none;stroke:#fff;stroke-width:1.6}
+  .sheen{fill:url(#sheen);opacity:.5}
+  .door{fill:#23252a} .doorwin{fill:#3a4147}
+  .gdoor{fill:#E6E2D8} .gpanel line{stroke:#C7C2B5;stroke-width:.9;opacity:.7}
+  .gwin{fill:#9fa6a3}
+  /* concrete */
+  .drive{fill:#CDC8BB} .drive-d{fill:#B0AB9D} .walk{fill:#CDC8BB}
+
+  /* ---------- assembly ---------- */
+  .part{opacity:0}
+  @keyframes pour{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
+  @keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes drop{from{opacity:0;transform:translateY(-210px)}62%{opacity:1;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+  @keyframes fade{to{opacity:1}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .shadowG{animation:fade .6s ease forwards .25s}
+  .slabG  {animation:pour .6s cubic-bezier(.3,1.2,.4,1) forwards .25s;transform-box:fill-box;transform-origin:center}
+  .wallsG {animation:rise .6s cubic-bezier(.3,1,.4,1) forwards .85s}
+  .roofG  {animation:drop .85s cubic-bezier(.4,1.2,.45,1) forwards 1.7s}
+  .openG  {animation:pop .5s cubic-bezier(.3,1.35,.4,1) forwards 2.6s;transform-box:fill-box;transform-origin:center}
+  .driveG {animation:pour .6s ease forwards 3.0s;transform-box:fill-box;transform-origin:center}
+  @media (prefers-reduced-motion:reduce){ .part{opacity:1!important;animation:none!important;transform:none!important} }
+
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div id="buildwrap" class="preview">
+      <div class="scene">
+<svg id="scene" viewBox="98 53 852 857" aria-label="Ranch home assembling, transparent background">
+        <defs>
+          <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#aebfc6" stop-opacity=".7"/><stop offset="1" stop-color="#2b3338" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+        </defs>
+
+        <!-- soft ground shadow (neutral: visible on light bg, invisible on dark) -->
+        <ellipse class="shadow part shadowG" cx="511" cy="527" rx="262" ry="70" fill="#000" opacity=".13" filter="url(#soft)"/>
+
+        <!-- DRIVE + WALK -->
+        <g class="part driveG">
+          <polygon class="drive-d" points="256.8,736.0 453.6,865.6 453.6,870.4 256.8,740.8"/>
+          <polygon class="walk" points="412.6,536.2 453.6,563.2 338.8,638.8 297.8,611.8"/>
+          <polygon class="drive" points="379.8,655.0 576.6,784.6 453.6,865.6 256.8,736.0"/>
+        </g>
+
+        <!-- SLAB -->
+        <g class="part slabG">
+          <polygon class="found" points="137.9,468.7 547.9,738.7 547.9,745.9 137.9,475.9"/><polygon class="found-d" points="880.0,520.0 547.9,738.7 547.9,745.9 880.0,527.2"/>
+          <polygon class="found" points="404.4,671.2 560.2,773.8 560.2,781.0 404.4,678.4"/><polygon class="found-d" points="666.8,703.6 560.2,773.8 560.2,781.0 666.8,710.8"/>
+          <polygon class="found" points="470.0,250.0 880.0,520.0 547.9,738.7 137.9,468.7"/>
+          <polygon class="found" points="511.0,601.0 666.8,703.6 560.2,773.8 404.4,671.2"/>
+        </g>
+
+        <!-- WALLS -->
+        <g class="part wallsG">
+          <polygon class="porch-ceil" points="388,364.0 552,472.0 511,499.0 347,391.0"/>
+          <polygon class="wht-f" points="142.0,466.0 265.0,547.0 265.0,445.0 142.0,364.0"/><g class="lap"><line x1="142.0" y1="454.8" x2="265.0" y2="535.8"/><line x1="142.0" y1="443.6" x2="265.0" y2="524.6"/><line x1="142.0" y1="432.4" x2="265.0" y2="513.4"/><line x1="142.0" y1="421.2" x2="265.0" y2="502.2"/><line x1="142.0" y1="410.0" x2="265.0" y2="491.0"/><line x1="142.0" y1="398.8" x2="265.0" y2="479.8"/><line x1="142.0" y1="387.6" x2="265.0" y2="468.6"/><line x1="142.0" y1="376.4" x2="265.0" y2="457.4"/><line x1="142.0" y1="365.2" x2="265.0" y2="446.2"/></g><polygon class="wht-s" points="347.0,493.0 265.0,547.0 265.0,445.0 347.0,391.0"/><g class="lap"><line x1="347.0" y1="481.8" x2="265.0" y2="535.8"/><line x1="347.0" y1="470.6" x2="265.0" y2="524.6"/><line x1="347.0" y1="459.4" x2="265.0" y2="513.4"/><line x1="347.0" y1="448.2" x2="265.0" y2="502.2"/><line x1="347.0" y1="437.0" x2="265.0" y2="491.0"/><line x1="347.0" y1="425.8" x2="265.0" y2="479.8"/><line x1="347.0" y1="414.6" x2="265.0" y2="468.6"/><line x1="347.0" y1="403.4" x2="265.0" y2="457.4"/><line x1="347.0" y1="392.2" x2="265.0" y2="446.2"/></g><polygon class="wht-p" points="388.0,466.0 552.0,574.0 552.0,472.0 388.0,364.0"/><g class="lap"><line x1="388.0" y1="454.8" x2="552.0" y2="562.8"/><line x1="388.0" y1="443.6" x2="552.0" y2="551.6"/><line x1="388.0" y1="432.4" x2="552.0" y2="540.4"/><line x1="388.0" y1="421.2" x2="552.0" y2="529.2"/><line x1="388.0" y1="410.0" x2="552.0" y2="518.0"/><line x1="388.0" y1="398.8" x2="552.0" y2="506.8"/><line x1="388.0" y1="387.6" x2="552.0" y2="495.6"/><line x1="388.0" y1="376.4" x2="552.0" y2="484.4"/><line x1="388.0" y1="365.2" x2="552.0" y2="473.2"/></g><polygon class="wht-p" points="388.0,466.0 347.0,493.0 347.0,391.0 388.0,364.0"/><g class="lap"><line x1="388.0" y1="454.8" x2="347.0" y2="481.8"/><line x1="388.0" y1="443.6" x2="347.0" y2="470.6"/><line x1="388.0" y1="432.4" x2="347.0" y2="459.4"/><line x1="388.0" y1="421.2" x2="347.0" y2="448.2"/><line x1="388.0" y1="410.0" x2="347.0" y2="437.0"/><line x1="388.0" y1="398.8" x2="347.0" y2="425.8"/><line x1="388.0" y1="387.6" x2="347.0" y2="414.6"/><line x1="388.0" y1="376.4" x2="347.0" y2="403.4"/><line x1="388.0" y1="365.2" x2="347.0" y2="392.2"/></g><polygon class="wht-s" points="880.0,520.0 634.0,682.0 634.0,580.0 880.0,418.0"/><g class="lap"><line x1="880.0" y1="508.8" x2="634.0" y2="670.8"/><line x1="880.0" y1="497.6" x2="634.0" y2="659.6"/><line x1="880.0" y1="486.4" x2="634.0" y2="648.4"/><line x1="880.0" y1="475.2" x2="634.0" y2="637.2"/><line x1="880.0" y1="464.0" x2="634.0" y2="626.0"/><line x1="880.0" y1="452.8" x2="634.0" y2="614.8"/><line x1="880.0" y1="441.6" x2="634.0" y2="603.6"/><line x1="880.0" y1="430.4" x2="634.0" y2="592.4"/><line x1="880.0" y1="419.2" x2="634.0" y2="581.2"/></g><polygon class="wht-f" points="404.4,671.2 560.2,773.8 560.2,671.8 404.4,569.2"/><g class="lap"><line x1="404.4" y1="660.0" x2="560.2" y2="762.6"/><line x1="404.4" y1="648.8" x2="560.2" y2="751.4"/><line x1="404.4" y1="637.6" x2="560.2" y2="740.2"/><line x1="404.4" y1="626.4" x2="560.2" y2="729.0"/><line x1="404.4" y1="615.2" x2="560.2" y2="717.8"/><line x1="404.4" y1="604.0" x2="560.2" y2="706.6"/><line x1="404.4" y1="592.8" x2="560.2" y2="695.4"/><line x1="404.4" y1="581.6" x2="560.2" y2="684.2"/><line x1="404.4" y1="570.4" x2="560.2" y2="673.0"/></g><polygon class="wht-s" points="666.8,703.6 560.2,773.8 560.2,671.8 666.8,601.6"/><g class="lap"><line x1="666.8" y1="692.4" x2="560.2" y2="762.6"/><line x1="666.8" y1="681.2" x2="560.2" y2="751.4"/><line x1="666.8" y1="670.0" x2="560.2" y2="740.2"/><line x1="666.8" y1="658.8" x2="560.2" y2="729.0"/><line x1="666.8" y1="647.6" x2="560.2" y2="717.8"/><line x1="666.8" y1="636.4" x2="560.2" y2="706.6"/><line x1="666.8" y1="625.2" x2="560.2" y2="695.4"/><line x1="666.8" y1="614.0" x2="560.2" y2="684.2"/><line x1="666.8" y1="602.8" x2="560.2" y2="673.0"/></g>
+        </g>
+
+        <!-- OPENINGS -->
+        <g class="part openG"><polygon class="win" points="158.4,432.8 191.2,454.4 191.2,414.4 158.4,392.8"/><polygon class="winframe" points="158.4,432.8 191.2,454.4 191.2,414.4 158.4,392.8"/><polygon class="sheen" points="158.4,432.8 191.2,454.4 191.2,414.4 158.4,392.8"/><polygon class="win" points="215.8,470.6 248.6,492.2 248.6,452.2 215.8,430.6"/><polygon class="winframe" points="215.8,470.6 248.6,492.2 248.6,452.2 215.8,430.6"/><polygon class="sheen" points="215.8,470.6 248.6,492.2 248.6,452.2 215.8,430.6"/><polygon class="door" points="457.7,511.9 486.4,530.8 486.4,440.8 457.7,421.9"/><polygon class="doorwin" points="460.6,443.8 483.5,458.9 483.5,442.9 460.6,427.8"/><polygon class="win" points="404.4,428.8 445.4,455.8 445.4,419.8 404.4,392.8"/><polygon class="winframe" points="404.4,428.8 445.4,455.8 445.4,419.8 404.4,392.8"/><polygon class="sheen" points="404.4,428.8 445.4,455.8 445.4,419.8 404.4,392.8"/><polygon class="win" points="818.5,516.5 773.4,546.2 773.4,506.2 818.5,476.5"/><polygon class="winframe" points="818.5,516.5 773.4,546.2 773.4,506.2 818.5,476.5"/><polygon class="sheen" points="818.5,516.5 773.4,546.2 773.4,506.2 818.5,476.5"/><polygon class="gdoor" points="414.7,678.0 476.2,718.5 476.2,632.5 414.7,592.0"/><g class="gpanel"><line x1="414.7" y1="656.5" x2="476.2" y2="697.0"/><line x1="414.7" y1="635.0" x2="476.2" y2="675.5"/><line x1="414.7" y1="613.5" x2="476.2" y2="654.0"/></g><polygon class="gwin" points="419.6,606.4 435.2,616.7 435.2,607.9 419.6,597.6"/><polygon class="gwin" points="445.0,623.1 460.6,633.4 460.6,624.6 445.0,614.3"/><polygon class="gwin" points="470.4,639.9 486.0,650.1 486.0,641.3 470.4,631.1"/><polygon class="gwin" points="495.8,656.6 511.4,666.9 511.4,658.1 495.8,647.8"/><polygon class="gdoor" points="486.4,725.2 547.9,765.7 547.9,679.7 486.4,639.2"/><g class="gpanel"><line x1="486.4" y1="703.7" x2="547.9" y2="744.2"/><line x1="486.4" y1="682.2" x2="547.9" y2="722.7"/><line x1="486.4" y1="660.7" x2="547.9" y2="701.2"/></g><polygon class="gwin" points="491.3,653.6 506.9,663.9 506.9,655.1 491.3,644.8"/><polygon class="gwin" points="516.7,670.4 532.3,680.6 532.3,671.8 516.7,661.6"/><polygon class="gwin" points="542.2,687.1 557.7,697.4 557.7,688.6 542.2,678.3"/><polygon class="gwin" points="567.6,703.9 583.2,714.1 583.2,705.3 567.6,695.1"/></g>
+
+        <!-- ROOFS -->
+        <g class="part roofG"><polygon class="rf-back" points="470.0,130.7 906.2,418.0 634.0,348.9 470.0,240.9"/><polygon class="rf-rhip" points="906.2,418.0 634.0,597.3 634.0,348.9"/><polygon class="rf-front" points="197.8,310.0 634.0,597.3 634.0,348.9 470.0,240.9"/><polygon class="rf-lhip" points="470.0,130.7 197.8,310.0 470.0,240.9"/><g class="hipline"><line x1="470.0" y1="240.9" x2="634.0" y2="348.9"/><line x1="470.0" y1="130.7" x2="470.0" y2="240.9"/><line x1="197.8" y1="310.0" x2="470.0" y2="240.9"/><line x1="906.2" y1="418.0" x2="634.0" y2="348.9"/><line x1="634.0" y1="597.3" x2="634.0" y2="348.9"/></g><polygon class="rf-back" points="224.0,292.7 373.2,391.0 265.0,363.5 224.0,336.5"/><polygon class="rf-rhip" points="373.2,391.0 265.0,462.3 265.0,363.5"/><polygon class="rf-front" points="115.8,364.0 265.0,462.3 265.0,363.5 224.0,336.5"/><polygon class="rf-lhip" points="224.0,292.7 115.8,364.0 224.0,336.5"/><g class="hipline"><line x1="224.0" y1="336.5" x2="265.0" y2="363.5"/><line x1="224.0" y1="292.7" x2="224.0" y2="336.5"/><line x1="115.8" y1="364.0" x2="224.0" y2="336.5"/><line x1="373.2" y1="391.0" x2="265.0" y2="363.5"/><line x1="265.0" y1="462.3" x2="265.0" y2="363.5"/></g><polygon class="rf-back" points="511.0,481.7 693.0,601.6 560.2,567.9 511.0,535.5"/><polygon class="rf-rhip" points="693.0,601.6 560.2,689.1 560.2,567.9"/><polygon class="rf-front" points="378.2,569.2 560.2,689.1 560.2,567.9 511.0,535.5"/><polygon class="rf-lhip" points="511.0,481.7 378.2,569.2 511.0,535.5"/><g class="hipline"><line x1="511.0" y1="535.5" x2="560.2" y2="567.9"/><line x1="511.0" y1="481.7" x2="511.0" y2="535.5"/><line x1="378.2" y1="569.2" x2="511.0" y2="535.5"/><line x1="693.0" y1="601.6" x2="560.2" y2="567.9"/><line x1="560.2" y1="689.1" x2="560.2" y2="567.9"/></g></g>
+      </svg>
+      </div>
+    </div>
+  </div>
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    var cycle = 5200;
+    function rebuild(){
+      var wrap = document.getElementById('buildwrap');
+      if (!wrap) return;
+      wrap.replaceWith(wrap.cloneNode(true));
+    }
+    window.setInterval(rebuild, cycle);
+  })();
+</script>
+</body>
+</html>
