@@ -89,14 +89,20 @@
 <script>
   (function(){
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
+    var firstBuildMs = reduce ? 250 : 3600;
     var cycle = 5200;
+    function notifyComplete(){
+      if (window.parent) {
+        window.parent.postMessage({ type: 'foundry-preloader-complete' }, window.location.origin);
+      }
+    }
     function rebuild(){
       var wrap = document.getElementById('buildwrap');
       if (!wrap) return;
       wrap.replaceWith(wrap.cloneNode(true));
     }
-    window.setInterval(rebuild, cycle);
+    window.setTimeout(notifyComplete, firstBuildMs);
+    if (!reduce) window.setInterval(rebuild, cycle);
   })();
 </script>
 </body>

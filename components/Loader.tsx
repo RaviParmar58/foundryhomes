@@ -5,29 +5,38 @@ import { useEffect, useState } from 'react'
 export default function Loader() {
   const [isDone, setIsDone] = useState(false)
   const [shouldRender, setShouldRender] = useState(true)
+  const [pageLoaded, setPageLoaded] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
   useEffect(() => {
-    const minVisibleMs = 3600
-    const start = performance.now()
-    let timeoutId: number | undefined
-
-    const finish = () => {
-      const elapsed = performance.now() - start
-      const delay = Math.max(0, minVisibleMs - elapsed)
-      timeoutId = window.setTimeout(() => setIsDone(true), delay)
-    }
+    const markPageLoaded = () => setPageLoaded(true)
 
     if (document.readyState === 'complete') {
-      finish()
+      markPageLoaded()
     } else {
-      window.addEventListener('load', finish, { once: true })
+      window.addEventListener('load', markPageLoaded, { once: true })
     }
 
+    return () => window.removeEventListener('load', markPageLoaded)
+  }, [])
+
+  useEffect(() => {
+    const handleAnimationMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return
+      if (event.data?.type === 'foundry-preloader-complete') {
+        setAnimationComplete(true)
+      }
+    }
+
+    window.addEventListener('message', handleAnimationMessage)
     return () => {
-      window.removeEventListener('load', finish)
-      if (timeoutId) window.clearTimeout(timeoutId)
+      window.removeEventListener('message', handleAnimationMessage)
     }
   }, [])
+
+  useEffect(() => {
+    if (pageLoaded && animationComplete) setIsDone(true)
+  }, [pageLoaded, animationComplete])
 
   useEffect(() => {
     if (!isDone) return
