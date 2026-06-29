@@ -48,7 +48,7 @@ export default function HeroStrip() {
           style={{ animationDelay: `${i * 0.1}s` }}
           onClick={() => setActive(i)}
         >
-          <div className="hero-strip__line" aria-hidden="true"></div>
+          {/* <div className="hero-strip__line" aria-hidden="true"></div> */}
           <span className="hero-strip__num">{s.num} / {s.label}</span>
           <h3 className="hero-strip__title">{s.title}</h3>
           <p className="hero-strip__desc">{s.desc}</p>

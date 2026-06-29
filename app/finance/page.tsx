@@ -59,7 +59,7 @@ export default function FinancePage() {
 
             <div className="finance-hero__image rv rv-d1">
               <Image
-                src="/assets/images/homes/photo-1600585154340-be6161a56a0c.jpg"
+                src="/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg"
                 alt="Modern Foundry-style home exterior with deck"
                 width={1300}
                 height={900}

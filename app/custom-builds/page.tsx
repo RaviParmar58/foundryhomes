@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -66,14 +67,14 @@ export default function CustomBuildsPage() {
                 than a selection from the Foundry Homes plan range but ensures you will get a unique design and build
                 family home which is truly personalised.
               </p>
-              <a className="btn btn--solid" href="/#contact" data-magnet="">
+              <Link className="btn btn--solid" href="/contact" data-magnet="">
                 <span>Start your brief</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="cb-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg"
+              src="/assets/images/homes/modern-luxury-house-with-swimming-pool.jpg"
               alt="Modern custom Foundry-style family home exterior"
               width={1600}
               height={900}
@@ -97,7 +98,7 @@ export default function CustomBuildsPage() {
 
         <section className="cb-feature-image" aria-label="Custom build interior">
           <Image
-            src="/assets/images/homes/photo-1600585154340-be6161a56a0c.jpg"
+            src="/assets/images/homes/woody-kelly-6R_sDhk4VrQ-unsplash.jpg"
             alt="Light-filled custom home living and kitchen space"
             width={1600}
             height={900}
@@ -128,9 +129,9 @@ export default function CustomBuildsPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -141,9 +142,9 @@ export default function CustomBuildsPage() {
               <h2 className="display">Download the Foundry custom build brochure</h2>
               <p>Full specs, floor plans and process overview, all in one PDF.</p>
             </div>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Download free</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -47,13 +48,13 @@ const steps = [
 const models = [
   ['Foundry 36', '1', '1', '36', '/assets/images/homes/3d-rendering-wooden-house.jpg'],
   ['Foundry 51', '2', '1', '51', '/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg'],
-  ['Foundry 52', '2', '1', '52', '/assets/images/homes/3d-rendering-wooden-house (2).jpg'],
-  ['Foundry 57', '2', '1', '57', '/assets/images/homes/Dual Pavilion House Exterior.jpg'],
-  ['Foundry 59', '2', '1', '59', '/assets/images/homes/3d-rendering-wooden-house (3).jpg'],
-  ['Foundry 62', '3', '1', '62', '/assets/images/homes/photo-1600585154340-be6161a56a0c.jpg'],
-  ['Foundry 69', '3', '1', '69', '/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg'],
-  ['Foundry 73', '3', '2', '73', '/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg'],
-  ['Foundry 73B', '1', '1', '73', '/assets/images/homes/modern-villa-with-swimming-pool.jpg'],
+  ['Foundry 52', '2', '1', '52', '/assets/images/homes/ben-eaton-VYFGc4Ggut8-unsplash.jpg'],
+  ['Foundry 57', '2', '1', '57', '/assets/images/homes/yaryna-bakhovska-gVa3uv7dJoA-unsplash.jpg'],
+  ['Foundry 59', '2', '1', '59', '/assets/images/homes/luise-and-nic-pRXi1TbtyiQ-unsplash.jpg'],
+  ['Foundry 62', '3', '1', '62', '/assets/images/homes/raygar-he-6eAq-_TOIn8-unsplash.jpg'],
+  ['Foundry 69', '3', '1', '69', '/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg'],
+  ['Foundry 73', '3', '2', '73', '/assets/images/homes/three-dimensional-house-model.jpg'],
+  ['Foundry 73B', '1', '1', '73', '/assets/images/homes/zac-gudakov-burxaX8eqw0-unsplash.jpg'],
 ]
 
 export default function GrannyFlatsHyphenPage() {
@@ -78,14 +79,14 @@ export default function GrannyFlatsHyphenPage() {
                 Architecturally designed, steel-framed minor dwellings up to 70m<sup>2</sup>, fully compliant, fixed
                 price, and managed from concept to key handover.
               </p>
-              <a className="btn btn--solid" href="/#contact" data-magnet="">
+              <Link className="btn btn--solid" href="/contact" data-magnet="">
                 <span>Get a quote</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="gf-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg"
+              src="/assets/images/homes/yaryna-bakhovska-gVa3uv7dJoA-unsplash.jpg"
               alt="Modern compact granny flat with timber cladding and deck"
               width={1600}
               height={900}
@@ -110,7 +111,7 @@ export default function GrannyFlatsHyphenPage() {
         <section className="gf-advice" aria-label="Granny flat legislation support">
           <div className="gf-advice__image rv">
             <Image
-              src="/assets/images/homes/3d-rendering-wooden-house (2).jpg"
+              src="/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg"
               alt="Compact modern cabin in a landscaped setting"
               width={1300}
               height={900}
@@ -131,9 +132,9 @@ export default function GrannyFlatsHyphenPage() {
               strategy for you that will ensure it is legally compliant and satisfies all insurance companies and banks
               requirements.
             </p>
-            <a className="btn btn--solid" href="/#contact" data-magnet="">
+            <Link className="btn btn--solid" href="/contact" data-magnet="">
               <span>Contact us to learn more</span>
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -184,9 +185,9 @@ export default function GrannyFlatsHyphenPage() {
                       <b>{beds}</b> bed <i></i> <b>{baths}</b> bath <i></i> <b>{area}</b> m<sup>2</sup>
                     </p>
                     <h3>P.O.A</h3>
-                    <a className="btn btn--sm btn--solid" href="/#contact" data-magnet="">
+                    <Link className="btn btn--sm btn--solid" href="/contact" data-magnet="">
                       <span>View plan</span>
-                    </a>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -198,9 +199,9 @@ export default function GrannyFlatsHyphenPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

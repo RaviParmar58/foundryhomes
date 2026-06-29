@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -53,7 +54,7 @@ export default function SuppliersPage() {
             </div>
             <div className="suppliers-hero__image rv rv-d1">
               <Image
-                src="/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg"
+                src="/assets/images/homes/zac-gudakov-burxaX8eqw0-unsplash.jpg"
                 alt="Modern Foundry-style home exterior with timber deck"
                 width={1300}
                 height={900}
@@ -77,7 +78,7 @@ export default function SuppliersPage() {
         <section className="suppliers-feature" aria-label="Why our suppliers matter">
           <div className="suppliers-feature__image rv">
             <Image
-              src="/assets/images/homes/cait-QfEk58i-d78-unsplash.jpg"
+              src="/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg"
               alt="Warm modern interior with timber dining table"
               width={1100}
               height={850}
@@ -126,9 +127,9 @@ export default function SuppliersPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today.</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

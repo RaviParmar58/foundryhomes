@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -16,11 +17,11 @@ const promises = [
 const pillars = [
   {
     title: 'Every plan is architecturally designed',
-    image: '/assets/images/homes/3d-rendering-wooden-house (2).jpg',
+    image: '/assets/images/homes/archidea-x-CgGdE-BB9Jw-unsplash.jpg',
   },
   {
     title: 'Steel frame. Every home. No exceptions',
-    image: null,
+    image: '/assets/images/homes/laura-cleffmann-NuxSQPE-X90-unsplash.jpg',
   },
   {
     title: 'Loyal New Zealand supply chain',
@@ -50,9 +51,9 @@ export default function FoundryPage() {
                 We are not the biggest home builder in New Zealand. That is a choice, not a limitation. Every home we
                 build gets the attention it deserves.
               </p>
-              <a className="btn btn--solid" href="/#contact" data-magnet="">
+              <Link className="btn btn--solid" href="/contact" data-magnet="">
                 <span>Start your project</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="foundry-hero__image rv rv-d1">
@@ -93,7 +94,7 @@ export default function FoundryPage() {
           <div className="wrap foundry-gallery__grid">
             <div className="foundry-gallery__image rv">
               <Image
-                src="/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg"
+                src="/assets/images/homes/woody-kelly-6R_sDhk4VrQ-unsplash.jpg"
                 alt="Modern compact timber-clad home with covered outdoor living"
                 width={1300}
                 height={900}
@@ -124,7 +125,7 @@ export default function FoundryPage() {
         <section className="foundry-story" aria-label="The Foundry story">
           <div className="foundry-story__image rv">
             <Image
-              src="/assets/images/homes/photo-1600585154340-be6161a56a0c.jpg"
+              src="/assets/images/homes/cait-QfEk58i-d78-unsplash.jpg"
               alt="Premium modern home connected to outdoor living"
               width={1400}
               height={1000}
@@ -160,15 +161,15 @@ export default function FoundryPage() {
               Cold-formed steel framing is stronger, straighter and more durable than timber. It does not warp, twist or
               attract pests. It is not an upgrade. It is how we build every home, every time.
             </p>
-            <a className="btn btn--dark" href="/steel-framing" data-magnet="">
+            <Link className="btn btn--dark" href="/steel-framing" data-magnet="">
               <span>Learn about our steel framing</span>
-            </a>
+            </Link>
           </div>
         </section>
 
-        <section className="foundry-pillars" aria-label="Foundry commitments">
-          {pillars.map((pillar) => (
-            <article className="foundry-pillar rv" key={pillar.title}>
+        <section className="foundry-pillars rv" aria-label="Foundry commitments">
+          {pillars.map((pillar, index) => (
+            <article className={`foundry-pillar rv-d${index + 1}`} key={pillar.title}>
               {pillar.image ? (
                 <Image
                   src={pillar.image}
@@ -191,9 +192,9 @@ export default function FoundryPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today.</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

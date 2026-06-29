@@ -333,32 +333,8 @@ export function useFoundryAnimations() {
     if (tNextBtn) tNextBtn.addEventListener('click', tNextHandler)
     window.addEventListener('resize', tResizeHandler)
 
-    /* ---------- Magnetic buttons ---------- */
-    let magnetCleanups: (() => void)[] = []
-
-    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !prefersReduced) {
-      document.querySelectorAll<HTMLElement>('[data-magnet]').forEach((el) => {
-        const moveHandler = (e: MouseEvent) => {
-          const r = el.getBoundingClientRect()
-          const x = (e.clientX - r.left - r.width / 2) * 0.22
-          const y = (e.clientY - r.top - r.height / 2) * 0.3
-          el.style.transform = 'translate(' + x + 'px,' + y + 'px)'
-        }
-        const leaveHandler = () => {
-          el.style.transform = ''
-          el.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)'
-          setTimeout(() => {
-            el.style.transition = ''
-          }, 500)
-        }
-        el.addEventListener('mousemove', moveHandler)
-        el.addEventListener('mouseleave', leaveHandler)
-        magnetCleanups.push(() => {
-          el.removeEventListener('mousemove', moveHandler)
-          el.removeEventListener('mouseleave', leaveHandler)
-        })
-      })
-    }
+    /* ---------- Magnetic buttons (disabled) ---------- */
+    const magnetCleanups: (() => void)[] = []
 
     /* ---------- Form ---------- */
     const quoteForm = document.getElementById('quoteForm') as HTMLFormElement | null

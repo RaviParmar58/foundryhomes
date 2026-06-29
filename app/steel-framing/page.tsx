@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -25,10 +27,12 @@ const proofPoints = [
   {
     title: 'Stronger structure',
     body: 'Cold-formed steel creates straight, stable framing with excellent structural integrity.',
+    image: '/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg',
   },
   {
     title: 'Cleaner assembly',
     body: 'Engineered members arrive ready to fit, helping reduce waste and speed up site work.',
+    image: '/assets/images/homes/ben-koorengevel-JJ8dVYbVU_U-unsplash.jpg',
   },
 ]
 
@@ -78,22 +82,24 @@ export default function SteelFramingPage() {
                 not an upgrade. It is the standard.
               </p>
               <div className="steel-hero__actions">
-                <a className="btn btn--solid" href="/#contact" data-magnet="">
+                <Link className="btn btn--solid" href="/contact" data-magnet="">
                   <span>Get a quote</span>
-                </a>
+                </Link>
                 <a className="steel-text-link" href="#advantages">
                   Explore benefits
                 </a>
               </div>
             </div>
           </div>
-          <div className="steel-hero__media steel-frame-graphic rv rv-d1" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div className="steel-hero__media steel-frame-graphic rv rv-d1">
+            <Image
+              src="/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg"
+              alt="Cold-formed steel frame under construction"
+              width={1400}
+              height={900}
+              priority
+              sizes="(max-width: 920px) 100vw, 58vw"
+            />
           </div>
         </section>
 
@@ -121,6 +127,14 @@ export default function SteelFramingPage() {
           <div className="wrap steel-proof__grid">
             {proofPoints.map((point, index) => (
               <article className="steel-proof-card rv" key={point.title}>
+                <Image
+                  className="steel-proof-card__image"
+                  src={point.image}
+                  alt=""
+                  width={1200}
+                  height={760}
+                  sizes="(max-width: 920px) 100vw, 50vw"
+                />
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <h2 className="display">{point.title}</h2>
                 <p>{point.body}</p>
@@ -139,13 +153,14 @@ export default function SteelFramingPage() {
         </section>
 
         <section className="steel-performance" aria-label="Performance that lasts decades">
-          <div className="steel-performance__panel steel-frame-graphic rv" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div className="steel-performance__panel steel-frame-graphic rv">
+            <Image
+              src="/assets/images/homes/thatselby--7QPeGK2_iU-unsplash.jpg"
+              alt="Steel framing structure being assembled on site"
+              width={1300}
+              height={900}
+              sizes="(max-width: 920px) 100vw, 56vw"
+            />
           </div>
           <div className="steel-performance__copy rv rv-d1">
             <p className="eyebrow">Why steel</p>
@@ -189,10 +204,14 @@ export default function SteelFramingPage() {
         </section>
 
         <section className="steel-assembly" aria-label="Manufactured off-site assembled on yours">
-          <div className="steel-assembly__panel rv" aria-hidden="true">
-            <div className="steel-module">
-              <i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
+          <div className="steel-assembly__panel rv">
+            <Image
+              src="/assets/images/homes/strange-happenings-ORuuzRN6AR0-unsplash.jpg"
+              alt="Steel frame wall panels assembled on site"
+              width={1300}
+              height={900}
+              sizes="(max-width: 920px) 100vw, 56vw"
+            />
           </div>
           <div className="steel-assembly__copy rv rv-d1">
             <p className="eyebrow">How it works</p>
@@ -204,9 +223,9 @@ export default function SteelFramingPage() {
               ready to assemble, faster than timber framing and with close to zero waste. The result is a structure that
               is perfectly true from the first day.
             </p>
-            <a className="btn btn--solid" href="/#range" data-magnet="">
+            <Link className="btn btn--solid" href="/#range" data-magnet="">
               <span>See our homes</span>
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -214,9 +233,9 @@ export default function SteelFramingPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today.</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

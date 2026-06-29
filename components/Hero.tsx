@@ -1,10 +1,37 @@
+import Image from 'next/image'
+
 export default function Hero() {
   return (
     <section className="hero" aria-label="Introduction">
       <div className="hero__media" aria-hidden="true">
-        <div className="hero__slide hero__slide--1 hero__bg" data-parallax="0.18"></div>
-        <div className="hero__slide hero__slide--2 hero__bg" data-parallax="0.18"></div>
-        <div className="hero__slide hero__slide--3 hero__bg" data-parallax="0.18"></div>
+        <div className="hero__slide hero__slide--1 hero__bg" data-parallax="0.18">
+          <Image
+            src="/assets/images/homes/Dual Pavilion House Exterior.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 920px) 100vw, 55vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
+        <div className="hero__slide hero__slide--2 hero__bg" data-parallax="0.18">
+          <Image
+            src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 920px) 100vw, 55vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
+        <div className="hero__slide hero__slide--3 hero__bg" data-parallax="0.18">
+          <Image
+            src="/assets/images/homes/yaryna-bakhovska-gVa3uv7dJoA-unsplash.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 920px) 100vw, 55vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
         <div className="hero__seam"><span></span></div>
         <div className="hero__crosshair"><span></span></div>
         <div className="hero__tag hero__tag--top"><i></i> Steel frame</div>

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
@@ -45,9 +46,9 @@ const steps = [
 ]
 
 const models = [
-  ['Foundry 80', '3', '2', '80', '/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg'],
-  ['Foundry 85', '3', '1', '85', '/assets/images/homes/3d-rendering-wooden-house (2).jpg'],
-  ['Foundry 99', '4', '2', '99', '/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg'],
+  ['Foundry 80', '3', '2', '80', '/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg'],
+  ['Foundry 85', '3', '1', '85', '/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg'],
+  ['Foundry 99', '4', '2', '99', '/assets/images/homes/Dual Pavilion House Exterior.jpg'],
 ]
 
 export default function FoundryHomesPage() {
@@ -72,14 +73,14 @@ export default function FoundryHomesPage() {
                 Architecturally designed, steel-framed homes from 70m<sup>2</sup>, fully compliant, fixed price, and
                 managed from concept to key handover.
               </p>
-              <a className="btn btn--solid" href="/#contact" data-magnet="">
+              <Link className="btn btn--solid" href="/contact" data-magnet="">
                 <span>Get a quote</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="fh-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg"
+              src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
               alt="Modern Foundry family home with timber cladding and deck"
               width={1600}
               height={900}
@@ -148,9 +149,9 @@ export default function FoundryHomesPage() {
                       <b>{beds}</b> bed <i></i> <b>{baths}</b> bath <i></i> <b>{area}</b> m<sup>2</sup>
                     </p>
                     <h3>P.O.A</h3>
-                    <a className="btn btn--sm btn--solid" href="/#contact" data-magnet="">
+                    <Link className="btn btn--sm btn--solid" href="/contact" data-magnet="">
                       <span>View plan</span>
-                    </a>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -162,9 +163,9 @@ export default function FoundryHomesPage() {
           <div className="wrap rv">
             <h2 className="display">Ready to start your journey?</h2>
             <p>Book a free quote today</p>
-            <a className="btn" href="/#contact" data-magnet="">
+            <Link className="btn" href="/contact" data-magnet="">
               <span>Book now</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

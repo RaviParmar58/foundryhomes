@@ -16,7 +16,7 @@ const featuredPost = {
   author: 'Foundry Team',
   date: 'June 2025',
   readTime: '8 min read',
-  image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=80',
+  image: '/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg',
 }
 
 const posts = [
@@ -28,7 +28,7 @@ const posts = [
     author: 'James R.',
     date: 'May 2025',
     readTime: '5 min',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    image: '/assets/images/homes/tuaans-nDULbGdEwDM-unsplash.jpg',
   },
   {
     category: 'Design',
@@ -38,7 +38,7 @@ const posts = [
     author: 'Sarah M.',
     date: 'April 2025',
     readTime: '6 min',
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
+    image: '/assets/images/homes/photorealistic-wooden-house-with-timber-structure.jpg',
   },
   {
     category: 'Finance',
@@ -48,7 +48,7 @@ const posts = [
     author: 'Melanie A.',
     date: 'March 2025',
     readTime: '7 min',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+    image: '/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg',
   },
   {
     category: 'Building Tips',
@@ -58,7 +58,7 @@ const posts = [
     author: 'Foundry Team',
     date: 'February 2025',
     readTime: '10 min',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+    image: '/assets/images/homes/phil-hearing-6lvui3Ak-eA-unsplash.jpg',
   },
   {
     category: 'Case Studies',
@@ -68,7 +68,7 @@ const posts = [
     author: 'Foundry Team',
     date: 'January 2025',
     readTime: '6 min',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+    image: '/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg',
   },
   {
     category: 'Building Tips',
@@ -78,7 +78,7 @@ const posts = [
     author: 'Foundry Team',
     date: 'December 2024',
     readTime: '5 min',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+    image: '/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg',
   },
 ]
 

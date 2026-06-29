@@ -24,7 +24,7 @@ export default function Regions() {
         <div className="regions__visual rv rv-d1" aria-hidden="true">
           <div className="regions__image regions__image--main">
             <Image
-              src="/assets/images/homes/photo-1600585154340-be6161a56a0c.jpg"
+              src="/assets/images/homes/zac-gudakov-burxaX8eqw0-unsplash.jpg"
               alt=""
               width={1200}
               height={800}
@@ -33,7 +33,7 @@ export default function Regions() {
           </div>
           <div className="regions__image regions__image--small">
             <Image
-              src="/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg"
+              src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
               alt=""
               width={900}
               height={700}
