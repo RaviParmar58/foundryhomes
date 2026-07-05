@@ -3,7 +3,8 @@ import type { Post, PostStatus } from '@prisma/client'
 export type { PostStatus }
 
 // Serialized shape returned across the wire (Prisma's Date fields become ISO strings)
-export type PostDTO = Omit<Post, 'category' | 'author' | 'createdAt' | 'updatedAt' | 'publishedAt'> & {
+export type PostDTO = Omit<Post, 'category' | 'author' | 'createdAt' | 'updatedAt' | 'publishedAt' | 'tags'> & {
+  tags: string[]
   createdAt: string
   updatedAt: string
   publishedAt: string | null
