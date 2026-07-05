@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { Prisma, PostStatus } from '@prisma/client'
+import { PostStatus } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { createPostSchema } from '@/lib/validation'
 import { toPostDTO, resolveUniqueSlug } from '@/lib/posts'
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const page = Math.max(1, Number(searchParams.get('page')) || 1)
   const pageSize = Math.min(100, Math.max(1, Number(searchParams.get('pageSize')) || 9))
 
-  const where: Prisma.PostWhereInput = {}
+  const where: { status?: PostStatus } = {}
 
   if (statusParam && Object.values(PostStatus).includes(statusParam as PostStatus)) {
     where.status = statusParam as PostStatus
