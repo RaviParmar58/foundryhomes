@@ -74,7 +74,7 @@ export default function CustomBuildsPage() {
           </div>
           <div className="cb-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/modern-luxury-house-with-swimming-pool.jpg"
+              src="/assets/Foundry Products (houses)/custom_design_01.jpeg"
               alt="Modern custom Foundry-style family home exterior"
               width={1600}
               height={900}
@@ -98,7 +98,7 @@ export default function CustomBuildsPage() {
 
         <section className="cb-feature-image" aria-label="Custom build interior">
           <Image
-            src="/assets/images/homes/woody-kelly-6R_sDhk4VrQ-unsplash.jpg"
+            src="/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR03---Living.jpg"
             alt="Light-filled custom home living and kitchen space"
             width={1600}
             height={900}

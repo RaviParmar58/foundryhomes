@@ -1,32 +1,32 @@
 const partnerLogos = [
   {
     name: "Evolve Architecture",
-    src: "/assets/images/partner_logo/Evolve_logo.webp",
+    src: "/assets/partner_logo/Evolve_logo.webp",
   },
   {
     name: "Greenframe",
-    src: "/assets/images/partner_logo/Greenframe_Logo_White.webp",
+    src: "/assets/partner_logo/Greenframe_Logo_White.webp",
     className: "logo-cell--greenframe",
   },
   {
     name: "NZ Windows",
-    src: "/assets/images/partner_logo/NZ-windows-logo-1.png.webp",
+    src: "/assets/partner_logo/NZ-windows-logo-1.png.webp",
   },
   {
     name: "Carpet Court",
-    src: "/assets/images/partner_logo/carpet-court.png",
+    src: "/assets/partner_logo/carpet-court.png",
   },
   {
     name: "Steel & Tube",
-    src: "/assets/images/partner_logo/S&T-Logo-Master-Red-1.jpg",
+    src: "/assets/partner_logo/S&T-Logo-Master-Red-1.jpg",
   },
   {
     name: "Mitre 10",
-    src: "/assets/images/partner_logo/mitre_10_logo.svg",
+    src: "/assets/partner_logo/mitre_10_logo.svg",
   },
   {
     name: "Mico",
-    src: "/assets/images/partner_logo/mico_logo_black.svg",
+    src: "/assets/partner_logo/mico_logo_black.svg",
   },
 ]
 

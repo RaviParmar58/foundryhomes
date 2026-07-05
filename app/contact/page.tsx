@@ -55,7 +55,7 @@ export default function ContactPage() {
           </div>
           <div className="contact-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/three-dimensional-house-model.jpg"
+              src="/assets/SHOWHOME/Foundry_Homes_Showhome_10.jpg"
               alt="Modern steel-framed Foundry home with warm timber cladding"
               width={1600}
               height={900}

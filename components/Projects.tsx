@@ -19,32 +19,32 @@ export default function Projects() {
         </div>
         <div className="masonry">
           <div className="proj rv">
-            <Image src="/assets/images/homes/Dual Pavilion House Exterior.jpg" alt="Steel-framed family home, dark cladding" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png" alt="Steel-framed family home, dark cladding" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Family home · Bay of Plenty</span><h3>The Ridgeline</h3></div>
             <div className="proj__plus">+</div>
           </div>
           <div className="proj rv rv-d1">
-            <Image src="/assets/images/homes/woody-kelly-6R_sDhk4VrQ-unsplash.jpg" alt="Light-filled open plan kitchen and living, Foundry family home" width={1200} height={1500} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR01---Living.jpg" alt="Light-filled open plan kitchen and living, Foundry family home" width={1200} height={1500} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Interior · Artist&apos;s impression</span><h3>The Foundry Interior</h3></div>
             <div className="proj__plus">+</div>
           </div>
           <div className="proj rv rv-d2">
-            <Image src="/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg" alt="Modern kitchen with stone bench" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Internal Renders/25-4721-Foundry-Homes-Standard-Range---51-IR01---Living.jpg" alt="Modern kitchen with stone bench" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Family home · Waikato</span><h3>The Foundry 90</h3></div>
             <div className="proj__plus">+</div>
           </div>
           <div className="proj rv">
-            <Image src="/assets/images/homes/yaryna-bakhovska-gVa3uv7dJoA-unsplash.jpg" alt="Cedar and black granny flat exterior" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Stock Imagery/granny_flat_01.jpeg" alt="Cedar and black granny flat exterior" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Granny flat · Auckland</span><h3>The Cedar 60</h3></div>
             <div className="proj__plus">+</div>
           </div>
           <div className="proj rv rv-d1">
-            <Image src="/assets/images/homes/cait-QfEk58i-d78-unsplash.jpg" alt="Lounge with floor to ceiling glazing" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR02---Living.jpg" alt="Lounge with floor to ceiling glazing" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Custom build · Tauranga</span><h3>Glasshouse</h3></div>
             <div className="proj__plus">+</div>
           </div>
           <div className="proj rv rv-d2">
-            <Image src="/assets/images/homes/modern-villa-with-swimming-pool.jpg" alt="Architectural home at dusk with pool" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
+            <Image src="/assets/Foundry Products (houses)/custom_design_01.jpeg" alt="Architectural home at dusk with pool" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
             <div className="proj__info"><span>Custom build · Northland</span><h3>Dusk House</h3></div>
             <div className="proj__plus">+</div>
           </div>

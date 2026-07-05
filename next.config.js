@@ -12,14 +12,5 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/grannyflats',
-        destination: '/granny-flats',
-        permanent: true,
-      },
-    ]
-  },
 }
 module.exports = nextConfig

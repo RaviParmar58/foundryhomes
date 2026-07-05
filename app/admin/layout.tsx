@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Blog Admin — Foundry Homes',
+  title: 'Blog Admin - Foundry Homes',
   description: 'Blog management dashboard for Foundry Homes.',
   robots: { index: false, follow: false },
 }

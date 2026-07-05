@@ -8,13 +8,13 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 
 const suppliers = [
-  ['Evolve', 'Architecture'],
-  ['Green Frame', 'Steel systems'],
-  ['NZ Windows', 'Since 1990'],
-  ['Carpet Court', 'Flooring'],
-  ['Steel & Tube', 'Structural supply'],
-  ['Mitre 10', 'Trade supply'],
-  ['Mico', 'Plumbing'],
+  { name: 'Evolve Architecture', logo: '/assets/logos/suppliers/evolve-architecture.png' },
+  { name: 'Green Frame', logo: '/assets/logos/suppliers/greenframe.png' },
+  { name: 'NZ Windows', logo: '/assets/logos/suppliers/nz-windows.png' },
+  { name: 'Carpet Court', logo: '/assets/logos/suppliers/carpet-court.webp' },
+  { name: 'Steel & Tube', logo: '/assets/logos/suppliers/steel-and-tube.webp' },
+  { name: 'Mitre 10', logo: '/assets/logos/suppliers/mitre-10.jpg' },
+  { name: 'Mico', logo: '/assets/logos/suppliers/mico.png' },
 ]
 
 const values = [
@@ -54,7 +54,7 @@ export default function SuppliersPage() {
             </div>
             <div className="suppliers-hero__image rv rv-d1">
               <Image
-                src="/assets/images/homes/zac-gudakov-burxaX8eqw0-unsplash.jpg"
+                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_52.jpeg"
                 alt="Modern Foundry-style home exterior with timber deck"
                 width={1300}
                 height={900}
@@ -78,7 +78,7 @@ export default function SuppliersPage() {
         <section className="suppliers-feature" aria-label="Why our suppliers matter">
           <div className="suppliers-feature__image rv">
             <Image
-              src="/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg"
+              src="/assets/SHOWHOME/Foundry_Homes_Showhome_9.jpg"
               alt="Warm modern interior with timber dining table"
               width={1100}
               height={850}
@@ -111,12 +111,24 @@ export default function SuppliersPage() {
 
         <section className="suppliers-logos" aria-label="Trusted supplier logos">
           <div className="wrap">
-            <p className="eyebrow rv">Trusted supplier network</p>
-            <div className="supplier-logo-grid rv rv-d1">
-              {suppliers.map(([name, detail]) => (
-                <div className="supplier-logo-card" key={name}>
-                  <b>{name}</b>
-                  <small>{detail}</small>
+            <div className="suppliers-logos__head">
+              <p className="eyebrow rv">Our partners</p>
+              <h2 className="display rv rv-d1">Built with trusted New Zealand suppliers</h2>
+              <p className="rv rv-d2">
+                Every Foundry home is built using proven NZ materials from suppliers we trust — helping keep quality
+                consistent, supply reliable, and pricing stable throughout your build.
+              </p>
+            </div>
+            <div className="supplier-logo-grid rv rv-d3">
+              {suppliers.map((supplier) => (
+                <div className="supplier-logo-card" key={supplier.name}>
+                  <Image
+                    src={supplier.logo}
+                    alt={`${supplier.name} logo`}
+                    width={160}
+                    height={64}
+                    style={{ objectFit: 'contain', width: '100%', height: 'auto', maxHeight: 44 }}
+                  />
                 </div>
               ))}
             </div>

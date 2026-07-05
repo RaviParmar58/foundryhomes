@@ -108,8 +108,22 @@ export function useFoundryAnimations() {
       },
       { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
     )
-    document.querySelectorAll('.rv:not(#processRail), .rv-line').forEach((el) => {
+    const revealEls = Array.from(document.querySelectorAll<HTMLElement>('.rv:not(#processRail), .rv-line'))
+    const isVisible = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect()
+      return rect.bottom > 0 && rect.top < window.innerHeight * 0.92
+    }
+
+    revealEls.forEach((el) => {
       io.observe(el)
+    })
+    requestAnimationFrame(() => {
+      revealEls.forEach((el) => {
+        if (isVisible(el)) {
+          el.classList.add('is-in')
+          io.unobserve(el)
+        }
+      })
     })
 
     const frameEls = Array.from(document.querySelectorAll<HTMLElement>('.frame-svg'))

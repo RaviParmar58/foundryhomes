@@ -24,7 +24,7 @@ export default function Regions() {
         <div className="regions__visual rv rv-d1" aria-hidden="true">
           <div className="regions__image regions__image--main">
             <Image
-              src="/assets/images/homes/zac-gudakov-burxaX8eqw0-unsplash.jpg"
+              src="/assets/Stock Imagery/bay-of-plenty-view-from-mount-maunganui-2026-01-07-05-32-33-utc.jpg"
               alt=""
               width={1200}
               height={800}
@@ -33,7 +33,7 @@ export default function Regions() {
           </div>
           <div className="regions__image regions__image--small">
             <Image
-              src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
+              src="/assets/SHOWHOME/building-blueprint-drawing-compass-planning-and-w-2026-01-09-11-10-16-utc.jpg"
               alt=""
               width={900}
               height={700}

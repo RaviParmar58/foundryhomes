@@ -12,7 +12,7 @@ export default function MobileMenu() {
       <Link href="/steel-framing">Steel Framing</Link>
       <Link href="/suppliers">Suppliers</Link>
       <Link href="/finance">Finance</Link>
-      <Link href="/blog">Journal</Link>
+      <Link href="/blog">Blog</Link>
       <Link href="/contact">Get a Quote</Link>
     </div>
   )

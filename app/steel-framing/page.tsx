@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
@@ -8,12 +9,30 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 
 const benefits = [
-  'Superior structural strength',
-  'Precision-engineered framing',
-  'Reduced warping, twisting and shrinkage',
-  'Consistent build accuracy',
-  'Environmental friendliness',
-  'Time efficiency and reduced costs',
+  {
+    title: 'Superior structural strength',
+    body: 'Cold-formed steel creates a stronger, straighter frame for long-term residential performance.',
+  },
+  {
+    title: 'Precision-engineered framing',
+    body: 'Frames are manufactured to plan, helping every wall, opening, and junction align cleanly on site.',
+  },
+  {
+    title: 'Reduced movement',
+    body: 'Steel resists the warping, twisting, and shrinkage that can affect traditional timber framing.',
+  },
+  {
+    title: 'Consistent build accuracy',
+    body: 'A repeatable frame system helps trades work faster and keeps the finished home sharper.',
+  },
+  {
+    title: 'Environmental friendliness',
+    body: 'Steel is recyclable, durable, and reduces material waste through accurate manufacture.',
+  },
+  {
+    title: 'Time and cost efficiency',
+    body: 'Cleaner assembly and fewer movement issues can help reduce delays, rework, and hidden costs.',
+  },
 ]
 
 const stats = [
@@ -27,12 +46,12 @@ const proofPoints = [
   {
     title: 'Stronger structure',
     body: 'Cold-formed steel creates straight, stable framing with excellent structural integrity.',
-    image: '/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg',
+    image: '/assets/Steel imagery/Foundry_Homes_Steel_framing_2.jpg',
   },
   {
     title: 'Cleaner assembly',
     body: 'Engineered members arrive ready to fit, helping reduce waste and speed up site work.',
-    image: '/assets/images/homes/ben-koorengevel-JJ8dVYbVU_U-unsplash.jpg',
+    image: '/assets/Steel imagery/Foundry_Homes_Steel_framing_4.jpg',
   },
 ]
 
@@ -61,6 +80,7 @@ const advantages = [
 
 export default function SteelFramingPage() {
   useFoundryAnimations()
+  const [openAdvantage, setOpenAdvantage] = useState(0)
 
   return (
     <>
@@ -93,7 +113,7 @@ export default function SteelFramingPage() {
           </div>
           <div className="steel-hero__media steel-frame-graphic rv rv-d1">
             <Image
-              src="/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg"
+              src="/assets/Steel imagery/Foundry_Homes_Steel_framing.jpg"
               alt="Cold-formed steel frame under construction"
               width={1400}
               height={900}
@@ -115,8 +135,8 @@ export default function SteelFramingPage() {
             </div>
             <div className="steel-benefits__grid rv rv-d1">
               {benefits.map((benefit) => (
-                <div className="steel-benefit" key={benefit}>
-                  <span>{benefit}</span>
+                <div className="steel-benefit" key={benefit.title}>
+                  <span>{benefit.title}</span>
                 </div>
               ))}
             </div>
@@ -155,7 +175,7 @@ export default function SteelFramingPage() {
         <section className="steel-performance" aria-label="Performance that lasts decades">
           <div className="steel-performance__panel steel-frame-graphic rv">
             <Image
-              src="/assets/images/homes/thatselby--7QPeGK2_iU-unsplash.jpg"
+              src="/assets/Steel imagery/Foundry_Homes_Steel_framing_5.jpg"
               alt="Steel framing structure being assembled on site"
               width={1300}
               height={900}
@@ -193,12 +213,31 @@ export default function SteelFramingPage() {
               </h2>
             </div>
             <div className="steel-accordion rv rv-d1">
-              {advantages.map((item, index) => (
-                <details key={item.title} open={index === 0}>
-                  <summary>{item.title}</summary>
-                  <p>{item.body}</p>
-                </details>
-              ))}
+              {advantages.map((item, index) => {
+                const isOpen = openAdvantage === index
+                return (
+                  <div className={`steel-accordion__item${isOpen ? ' is-open' : ''}`} key={item.title}>
+                    <button
+                      type="button"
+                      className="steel-accordion__trigger"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpenAdvantage(isOpen ? -1 : index)}
+                    >
+                      <span className="steel-accordion__num">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="steel-accordion__title">{item.title}</span>
+                      <span className="steel-accordion__icon" aria-hidden="true">
+                        <span className="steel-accordion__icon-line steel-accordion__icon-line--h" />
+                        <span className="steel-accordion__icon-line steel-accordion__icon-line--v" />
+                      </span>
+                    </button>
+                    <div className="steel-accordion__panel">
+                      <div className="steel-accordion__panel-inner">
+                        <p>{item.body}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -206,7 +245,7 @@ export default function SteelFramingPage() {
         <section className="steel-assembly" aria-label="Manufactured off-site assembled on yours">
           <div className="steel-assembly__panel rv">
             <Image
-              src="/assets/images/homes/strange-happenings-ORuuzRN6AR0-unsplash.jpg"
+              src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_62.jpeg"
               alt="Steel frame wall panels assembled on site"
               width={1300}
               height={900}

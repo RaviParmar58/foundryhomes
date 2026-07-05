@@ -17,15 +17,15 @@ const promises = [
 const pillars = [
   {
     title: 'Every plan is architecturally designed',
-    image: '/assets/images/homes/archidea-x-CgGdE-BB9Jw-unsplash.jpg',
+    image: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_51.jpeg',
   },
   {
     title: 'Steel frame. Every home. No exceptions',
-    image: '/assets/images/homes/laura-cleffmann-NuxSQPE-X90-unsplash.jpg',
+    image: '/assets/Steel imagery/Foundry_Homes_Steel_framing.jpg',
   },
   {
     title: 'Loyal New Zealand supply chain',
-    image: '/assets/images/homes/Dual Pavilion House Exterior.jpg',
+    image: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_57.jpeg',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function FoundryPage() {
           </div>
           <div className="foundry-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/3d-rendering-wooden-house.jpg"
+              src="/assets/SHOWHOME/Foundry_Homes_Showhome_7.jpg"
               alt="Compact modern Foundry-style home on a timber deck"
               width={1600}
               height={900}
@@ -94,7 +94,7 @@ export default function FoundryPage() {
           <div className="wrap foundry-gallery__grid">
             <div className="foundry-gallery__image rv">
               <Image
-                src="/assets/images/homes/woody-kelly-6R_sDhk4VrQ-unsplash.jpg"
+                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_36.jpg"
                 alt="Modern compact timber-clad home with covered outdoor living"
                 width={1300}
                 height={900}
@@ -103,8 +103,8 @@ export default function FoundryPage() {
             </div>
             <div className="foundry-gallery__image rv rv-d1">
               <Image
-                src="/assets/images/homes/Dual Pavilion House Exterior.jpg"
-                alt="Foundry-style dual pavilion home at dusk"
+                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_85.jpeg"
+                alt="Foundry premium home exterior at dusk"
                 width={900}
                 height={600}
                 sizes="(max-width: 920px) 100vw, 50vw"
@@ -125,7 +125,7 @@ export default function FoundryPage() {
         <section className="foundry-story" aria-label="The Foundry story">
           <div className="foundry-story__image rv">
             <Image
-              src="/assets/images/homes/cait-QfEk58i-d78-unsplash.jpg"
+              src="/assets/SHOWHOME/Foundry_Homes_Showhome_8.jpg"
               alt="Premium modern home connected to outdoor living"
               width={1400}
               height={1000}

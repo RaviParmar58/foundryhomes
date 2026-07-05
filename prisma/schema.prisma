@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PostStatus {
+  PUBLISHED
+  DRAFT
+}
+
+enum Category {
+  BUILDING_TIPS
+  DESIGN
+  STEEL_FRAMING
+  FINANCE
+  CASE_STUDIES
+  INDUSTRY_INSIGHTS
+}
+
+model Post {
+  id            String     @id @default(cuid())
+  title         String
+  slug          String     @unique
+  category      Category
+  tags          String[]   @default([])
+  excerpt       String
+  content       String     @db.Text
+  featuredImage String?
+  status        PostStatus @default(DRAFT)
+  author        String     @default("Foundry Team")
+  views         Int        @default(0)
+  publishedAt   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([category])
+}

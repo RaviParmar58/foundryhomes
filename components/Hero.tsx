@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="hero__media" aria-hidden="true">
         <div className="hero__slide hero__slide--1 hero__bg" data-parallax="0.18">
           <Image
-            src="/assets/images/homes/Dual Pavilion House Exterior.jpg"
+            src="/assets/SHOWHOME/Foundry_Homes_Showhome_1.jpg"
             alt=""
             fill
             priority
@@ -16,7 +16,7 @@ export default function Hero() {
         </div>
         <div className="hero__slide hero__slide--2 hero__bg" data-parallax="0.18">
           <Image
-            src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
+            src="/assets/SHOWHOME/Foundry_Homes_Showhome_2.jpg"
             alt=""
             fill
             sizes="(max-width: 920px) 100vw, 55vw"
@@ -25,7 +25,7 @@ export default function Hero() {
         </div>
         <div className="hero__slide hero__slide--3 hero__bg" data-parallax="0.18">
           <Image
-            src="/assets/images/homes/yaryna-bakhovska-gVa3uv7dJoA-unsplash.jpg"
+            src="/assets/SHOWHOME/Foundry_Homes_Showhome_3.jpg"
             alt=""
             fill
             sizes="(max-width: 920px) 100vw, 55vw"
@@ -33,10 +33,6 @@ export default function Hero() {
           />
         </div>
         <div className="hero__seam"><span></span></div>
-        <div className="hero__crosshair"><span></span></div>
-        <div className="hero__tag hero__tag--top"><i></i> Steel frame</div>
-        <div className="hero__tag hero__tag--bottom"><i></i> NZ engineered</div>
-        <div className="hero__dim"><span></span><b>Fixed price</b></div>
       </div>
 
       <div className="hero__grid-lines" aria-hidden="true">
@@ -77,10 +73,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mouse scroll indicator */}
-      <a className="hero__mouse" href="#hero-strip" aria-label="Scroll to next section">
-        <span></span>
-      </a>
+
     </section>
   )
 }

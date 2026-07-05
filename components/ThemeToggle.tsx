@@ -1,8 +1,27 @@
 'use client'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useEffect, useState } from 'react'
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <button
+        className="theme-toggle"
+        type="button"
+        aria-label="Switch theme"
+        style={{ opacity: 0 }}
+      >
+        <div style={{ width: 18, height: 18 }} />
+      </button>
+    )
+  }
 
   return (
     <button

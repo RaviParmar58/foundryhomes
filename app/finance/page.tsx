@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 const financeServices = [
   {
     title: 'Home lending',
-    body: 'First home, investment property or your next move - guidance through every step of your home loan journey.',
+    body: 'First home, investment property or your next move – guidance through every step of your home loan journey.',
   },
   {
     title: 'Business lending',
@@ -17,7 +17,7 @@ const financeServices = [
   },
   {
     title: 'Asset finance',
-    body: 'Plant, machinery, vehicles and infrastructure - market-leading funding to meet your asset requirements.',
+    body: 'Plant, machinery, vehicles and infrastructure – market-leading funding to meet your asset requirements.',
   },
 ]
 
@@ -59,7 +59,7 @@ export default function FinancePage() {
 
             <div className="finance-hero__image rv rv-d1">
               <Image
-                src="/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg"
+                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_59.webp"
                 alt="Modern Foundry-style home exterior with deck"
                 width={1300}
                 height={900}
@@ -72,18 +72,31 @@ export default function FinancePage() {
 
         <section className="finance-intro" aria-label="Autumn Financial adviser">
           <div className="wrap">
-            <div className="finance-brand-strip rv">
+            <a
+              href="https://autumnfinancial.co.nz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="finance-brand-strip rv"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <div>
                 <p>Financial growth,</p>
                 <p><em>every season.</em></p>
               </div>
               <span>autumn.</span>
-            </div>
+            </a>
 
             <div className="finance-profile">
               <aside className="finance-adviser rv">
-                <div className="finance-adviser__portrait" aria-hidden="true">
-                  <span>MH</span>
+                <div className="finance-adviser__portrait">
+                  <Image
+                    src="/assets/melanie-helsby.jpg"
+                    alt="Melanie Helsby — Director & Financial Adviser"
+                    width={500}
+                    height={750}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    sizes="(max-width: 920px) 100vw, 280px"
+                  />
                 </div>
                 <h2>Melanie Helsby</h2>
                 <p>Director &amp; financial adviser</p>
@@ -106,12 +119,12 @@ export default function FinancePage() {
                 <h3>Why work with an adviser?</h3>
                 <p>
                   Working with Mel gives you access to a wide range of lending providers, deep expertise, and
-                  old-fashioned one-on-one service. In most cases, it is entirely free - the lending providers pay her.
+                  old-fashioned one-on-one service. In most cases, it is entirely free – the lending providers pay her.
                 </p>
                 <h3>Maybe it is time to speak to Mel?</h3>
                 <p>
                   Whether it is your first home, an investment property, working capital, a fleet upgrade, or that
-                  long-awaited renovation - Mel is ready to help make it happen.
+                  long-awaited renovation – Mel is ready to help make it happen.
                 </p>
               </div>
             </div>
@@ -156,3 +169,4 @@ export default function FinancePage() {
     </>
   )
 }
+

@@ -31,3 +31,7 @@ next-env.d.ts
 # os/editor
 .DS_Store
 Thumbs.db
+
+# uploaded content (user-generated, not part of source)
+/public/uploads/*
+!/public/uploads/.gitkeep

@@ -46,9 +46,9 @@ const steps = [
 ]
 
 const models = [
-  ['Foundry 80', '3', '2', '80', '/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg'],
-  ['Foundry 85', '3', '1', '85', '/assets/images/homes/modern-suburban-family-home-with-landscaped-yard.jpg'],
-  ['Foundry 99', '4', '2', '99', '/assets/images/homes/Dual Pavilion House Exterior.jpg'],
+  ['Foundry 80', '3', '2', '80', '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png'],
+  ['Foundry 85', '3', '1', '85', '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_85.jpeg'],
+  ['Foundry 99', '4', '2', '99', '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_99.jpeg'],
 ]
 
 export default function FoundryHomesPage() {
@@ -80,7 +80,7 @@ export default function FoundryHomesPage() {
           </div>
           <div className="fh-hero__image rv rv-d1">
             <Image
-              src="/assets/images/homes/salman-saqib-93AF-d_y8rI-unsplash.jpg"
+              src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_99.jpeg"
               alt="Modern Foundry family home with timber cladding and deck"
               width={1600}
               height={900}

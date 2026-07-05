@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <h5>Our Range</h5>
             <ul>
-              <li><Link href="/grannyflats">Granny Flats &amp; Cabins</Link></li>
+              <li><Link href="/granny-flats-cabins">Granny Flats &amp; Cabins</Link></li>
               <li><Link href="/foundryhomes">Family Homes</Link></li>
               <li><Link href="/custom-builds">Custom Builds</Link></li>
             </ul>
