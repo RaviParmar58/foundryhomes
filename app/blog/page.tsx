@@ -5,7 +5,7 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 import BlogPageClient from './BlogPageClient'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 const PAGE_SIZE = 9
 
 export default async function BlogPage() {

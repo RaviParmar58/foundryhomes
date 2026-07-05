@@ -7,6 +7,8 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 import { fmtMonthYear, readTimeFromContent } from '@/lib/format'
 
+export const dynamic = 'force-dynamic'
+
 async function getPublishedPost(slug: string) {
   const post = await prisma.post.findUnique({ where: { slug } })
   if (!post || post.status !== 'PUBLISHED') return null
