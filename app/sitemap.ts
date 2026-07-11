@@ -17,6 +17,8 @@ const STATIC_ROUTES = [
   '/suppliers',
 ]
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path}`,
@@ -28,15 +30,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }))
 
-  const posts = await prisma.post.findMany({
-    where: { status: 'PUBLISHED', publishedAt: { lte: new Date() } },
-    select: { slug: true, updatedAt: true },
-  })
+  let postEntries: MetadataRoute.Sitemap = []
 
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
-  }))
+  try {
+    const posts = await prisma.post.findMany({
+      where: { status: 'PUBLISHED', publishedAt: { lte: new Date() } },
+      select: { slug: true, updatedAt: true },
+    })
+
+    postEntries = posts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+    }))
+  } catch {
+    postEntries = []
+  }
 
   return [...staticEntries, ...modelEntries, ...postEntries]
 }

@@ -8,6 +8,7 @@ import { SITE_URL } from '@/lib/siteUrl'
 import BlogPageClient from './BlogPageClient'
 
 export const revalidate = 60
+export const dynamic = 'force-dynamic'
 const PAGE_SIZE = 9
 
 const TITLE = 'Blog - Build Notes from Foundry Homes'
