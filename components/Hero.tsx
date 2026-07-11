@@ -51,7 +51,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero__sub rv rv-d3">
-          New Zealand–made steel-framed homes, engineered around the way you actually live — with one fixed price and no surprises.
+          New Zealand–made steel-framed homes, engineered around the way you actually live - with one fixed price and no surprises.
         </p>
 
         {/* Trust badges */}

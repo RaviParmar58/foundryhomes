@@ -8,7 +8,7 @@ export default function Process() {
             <h2 className="display rv rv-d1">A process you can rely on</h2>
           </div>
           <p className="lede rv rv-d2" style={{ maxWidth: '38ch' }}>
-            From the first conversation to the day you get the keys — five clear stages, one local team.
+            From the first conversation to the day you get the keys - five clear stages, one local team.
           </p>
         </div>
         <div className="process__rail rv" id="processRail">
@@ -16,7 +16,7 @@ export default function Process() {
           <div className="step">
             <span className="step__num">Stage 01</span>
             <h3>Talk</h3>
-            <p>Tell us where you are and what you&apos;re thinking. Your local Foundry team discusses your project — no pressure, no obligations.</p>
+            <p>Tell us where you are and what you&apos;re thinking. Your local Foundry team discusses your project - no pressure, no obligations.</p>
           </div>
           <div className="step">
             <span className="step__num">Stage 02</span>
@@ -31,7 +31,7 @@ export default function Process() {
           <div className="step">
             <span className="step__num">Stage 04</span>
             <h3>Build</h3>
-            <p>Precision steel framing goes up — engineered for NZ conditions, backed by a Master Build or Certified Builder contract.</p>
+            <p>Precision steel framing goes up - engineered for NZ conditions, backed by a Master Build or Certified Builder contract.</p>
           </div>
           <div className="step">
             <span className="step__num">Stage 05</span>

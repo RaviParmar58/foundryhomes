@@ -138,7 +138,7 @@ export default function CustomBuildsPage() {
         <section className="cb-brochure" aria-label="Download the Foundry custom build brochure">
           <div className="wrap cb-brochure__inner rv">
             <div>
-              <p className="eyebrow">Download the Foundry custom build brochure</p>
+              <p className="eyebrow">Brochure</p>
               <h2 className="display">Download the Foundry custom build brochure</h2>
               <p>Full specs, floor plans and process overview, all in one PDF.</p>
             </div>

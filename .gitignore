@@ -35,3 +35,5 @@ Thumbs.db
 # uploaded content (user-generated, not part of source)
 /public/uploads/*
 !/public/uploads/.gitkeep
+# local-dev featured-image uploads (written by /api/upload when no blob store)
+/public/assets/uploads/

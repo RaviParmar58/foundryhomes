@@ -350,40 +350,6 @@ export function useFoundryAnimations() {
     /* ---------- Magnetic buttons (disabled) ---------- */
     const magnetCleanups: (() => void)[] = []
 
-    /* ---------- Form ---------- */
-    const quoteForm = document.getElementById('quoteForm') as HTMLFormElement | null
-    let formSubmitHandler: ((e: Event) => void) | null = null
-
-    if (quoteForm) {
-      formSubmitHandler = (e: Event) => {
-        e.preventDefault()
-        const emailField = document.getElementById('email') as HTMLInputElement | null
-        const msgField = document.getElementById('msg') as HTMLTextAreaElement | null
-        let ok = true
-
-        if (emailField) {
-          const bad =
-            !emailField.value.trim() ||
-            !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailField.value)
-          emailField.style.borderColor = bad ? '#d05a5a' : ''
-          if (bad) ok = false
-        }
-        if (msgField) {
-          const bad = !msgField.value.trim()
-          msgField.style.borderColor = bad ? '#d05a5a' : ''
-          if (bad) ok = false
-        }
-
-        if (!ok) return
-
-        const formFields = document.getElementById('formFields')
-        const formOk = document.getElementById('formOk')
-        if (formFields) formFields.style.display = 'none'
-        if (formOk) formOk.classList.add('is-show')
-      }
-      quoteForm.addEventListener('submit', formSubmitHandler)
-    }
-
     /* ---------- Cleanup ---------- */
     return () => {
       window.removeEventListener('load', loadHandler)
@@ -404,7 +370,6 @@ export function useFoundryAnimations() {
       if (tNextBtn) tNextBtn.removeEventListener('click', tNextHandler)
       window.removeEventListener('resize', tResizeHandler)
       magnetCleanups.forEach((fn) => fn())
-      if (quoteForm && formSubmitHandler) quoteForm.removeEventListener('submit', formSubmitHandler)
     }
   }, [])
 }

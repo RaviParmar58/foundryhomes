@@ -172,32 +172,6 @@ export default function BlogPageClient({
             )}
           </div>
         </section>
-
-        <section className="blog-newsletter" aria-label="Newsletter signup">
-          <div className="wrap">
-            <p className="eyebrow rv blog-newsletter__eyebrow">Stay informed</p>
-            <h2 className="display rv rv-d1">
-              Get the latest<br /><span className="blog-hero__accent">straight to you</span>
-            </h2>
-            <p className="lede rv rv-d2">
-              Monthly insights on home building, design trends, and the NZ property market - no spam, unsubscribe any time.
-            </p>
-            <form
-              className="blog-newsletter__form rv rv-d3"
-              onSubmit={(e) => e.preventDefault()}
-              aria-label="Newsletter subscription form"
-            >
-              <input
-                type="email"
-                placeholder="Your email address"
-                aria-label="Email address"
-                required
-              />
-              <button type="submit">Subscribe</button>
-            </form>
-            <p className="blog-newsletter__note rv rv-d4">We respect your privacy. Unsubscribe anytime.</p>
-          </div>
-        </section>
       </main>
     </>
   )

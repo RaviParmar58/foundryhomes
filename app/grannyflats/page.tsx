@@ -53,22 +53,25 @@ const rules = [
   },
 ]
 
+// Step copy matches the shared wording used on /granny-flats-cabins,
+// /foundryhomes and /custom-builds so the circle sections stay consistent
+// and the text fits inside the round mask at every breakpoint.
 const steps = [
   {
     title: 'Consultation',
-    body: "To move forward, let's meet on-site to confirm feasibility and discuss your vision and budget. This ensures a clear path to the next stage of your build.",
+    body: "We meet on-site to confirm feasibility and discuss your vision and budget. No obligation.",
   },
   {
-    title: 'Design & Feasibility',
-    body: 'Based on your goals and budget, we will present what we consider to be your best option for your site.',
+    title: 'Design & feasibility',
+    body: 'We present the best option for your site, layout, orientation, access and compliance.',
   },
   {
-    title: 'Pricing & Specification',
-    body: 'We will prepare a fixed price contract and a very clear specification for you to ensure there are no surprises.',
+    title: 'Pricing & specification',
+    body: 'A fixed price contract and a very clear specification, so there are no surprises.',
   },
   {
     title: 'Construction',
-    body: 'Once you agree and pay the deposit, we will handle all construction and compliance from the beginning until you move in.',
+    body: 'We handle all construction and compliance from the beginning until you move in.',
   },
 ]
 
@@ -87,7 +90,7 @@ export default function GrannyFlatsPage() {
           <div className="granny-hero__copy">
             <div className="granny-hero__inner rv">
               <p className="eyebrow">New legislation</p>
-              <h1 className="display" style={{ fontSize: 'clamp(48px, 5.2vw, 92px)' }}>
+              <h1 className="display">
                 Granny flats
                 <span>The new</span>
                 <span>
@@ -226,7 +229,8 @@ export default function GrannyFlatsPage() {
 
         <section className="granny-page-cta" aria-label="Granny flat and cabin options">
           <div className="wrap rv">
-            <p>Ready to start your journey? Take a look at our granny flat &amp; cabin options</p>
+            <h2 className="display">Ready to start your journey?</h2>
+            <p>Take a look at our granny flat &amp; cabin options</p>
             <Link className="btn" href="/granny-flats-cabins" data-magnet="">
               <span>Take a look at granny flats &amp; cabins</span>
             </Link>

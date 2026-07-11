@@ -6,7 +6,8 @@ import { todayISODate } from '@/lib/format'
 import { useAdminPosts } from './useAdminPosts'
 import { PostsListView } from './PostsListView'
 import { PostEditorView } from './PostEditorView'
-import { IconGrid, IconPlus, IconHome, IconExtLink, IconChevron, IconSun, IconMoon } from './icons'
+import { useRouter } from 'next/navigation'
+import { IconGrid, IconPlus, IconHome, IconExtLink, IconChevron, IconSun, IconMoon, IconLogout } from './icons'
 
 type AdminTheme = 'light' | 'dark'
 const ADMIN_THEME_KEY = 'fh_admin_theme'
@@ -20,7 +21,9 @@ const emptyForm = (): PostFormState => ({
   content: '',
   featuredImage: null,
   status: 'DRAFT',
+  category: 'BUILDING_TIPS',
   publishedAt: null,
+  updatedAt: null,
 })
 
 const toFormState = (post: PostDTO): PostFormState => ({
@@ -32,7 +35,9 @@ const toFormState = (post: PostDTO): PostFormState => ({
   content: post.content,
   featuredImage: post.featuredImage,
   status: post.status,
+  category: post.category,
   publishedAt: post.publishedAt,
+  updatedAt: post.updatedAt,
 })
 
 const toPayload = (form: PostFormState): PostMutationPayload => ({
@@ -43,10 +48,13 @@ const toPayload = (form: PostFormState): PostMutationPayload => ({
   content: form.content,
   featuredImage: form.featuredImage,
   status: form.status,
+  category: form.category,
+  updatedAt: form.updatedAt,
   publishedAt: form.publishedAt,
 })
 
 export default function AdminPage() {
+  const router = useRouter()
   const { posts, loading, error, refresh, createPost, updatePost, deletePost } = useAdminPosts()
   const [view, setView] = useState<AdminView>('posts')
   const [editingPost, setEditingPost] = useState<PostFormState | null>(null)
@@ -63,7 +71,7 @@ export default function AdminPage() {
       const initial = stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
       setTheme(initial)
     } catch {
-      /* localStorage unavailable — keep default light theme */
+      /* localStorage unavailable - keep default light theme */
     }
   }, [])
 
@@ -112,6 +120,7 @@ export default function AdminPage() {
       setView('posts')
     } catch (e) {
       toast(e instanceof Error ? e.message : 'Failed to save post')
+      refresh()
     }
   }
 
@@ -121,6 +130,7 @@ export default function AdminPage() {
       toast('Post deleted')
     } catch (e) {
       toast(e instanceof Error ? e.message : 'Failed to delete post')
+      refresh()
     }
   }
 
@@ -134,6 +144,8 @@ export default function AdminPage() {
       content: post.content,
       featuredImage: post.featuredImage,
       status: nextStatus,
+      category: post.category,
+      updatedAt: post.updatedAt,
       publishedAt: nextStatus === 'PUBLISHED' && !post.publishedAt ? todayISODate() : post.publishedAt,
     }
     try {
@@ -141,10 +153,17 @@ export default function AdminPage() {
       toast(nextStatus === 'PUBLISHED' ? 'Post published' : 'Post unpublished')
     } catch (e) {
       toast(e instanceof Error ? e.message : 'Failed to update post')
+      refresh()
     }
   }
 
   const pageTitle = view === 'editor' ? (isNewPost ? 'New Post' : 'Edit Post') : 'Blog Posts'
+
+  const handleLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' })
+    router.push('/admin/login')
+    router.refresh()
+  }
 
   return (
     <div className="admin" data-admin-theme={theme} suppressHydrationWarning>
@@ -195,6 +214,16 @@ export default function AdminPage() {
               <b>Foundry Team</b>
               <span>Administrator</span>
             </div>
+            <button
+              className="admin-icon-btn"
+              onClick={handleLogout}
+              type="button"
+              title="Sign out"
+              aria-label="Sign out"
+              style={{ marginLeft: 'auto' }}
+            >
+              <IconLogout />
+            </button>
           </div>
         </div>
       </aside>

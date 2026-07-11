@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
+import PageFx from '@/components/PageFx'
 import { ModelGallery } from './ModelGallery'
 import {
   grannyFlatModels,
@@ -28,7 +29,7 @@ export async function generateMetadata({
   if (!model) return {}
 
   return {
-    title: `${model.name} — Granny Flat Model | Foundry Homes`,
+    title: `${model.name} - Granny Flat Model | Foundry Homes`,
     description: model.tagline,
   }
 }
@@ -40,12 +41,13 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
   return (
     <>
+      <PageFx />
       <Navbar />
       <MobileMenu />
 
       <main className="model-page" id="top">
         <section className="model-hero" aria-label={`${model.name} overview`}>
-          <div className="model-hero__copy">
+          <div className="model-hero__copy rv">
             <p className="eyebrow">Granny flat model</p>
             <h1 className="display">{model.name}</h1>
             <p className="model-hero__tagline">{model.tagline}</p>
@@ -83,7 +85,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               </a>
             </div>
           </div>
-          <div className="model-hero__image">
+          <div className="model-hero__image rv rv-d1">
             <Image
               src={model.heroImage}
               alt={`${model.name} exterior`}
@@ -97,12 +99,12 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         <section className="model-specs t-paper" aria-label="Specifications">
           <div className="wrap">
-            <div className="model-section-head">
+            <div className="model-section-head rv">
               <p className="eyebrow">Specifications</p>
               <h2 className="display">What's included as standard</h2>
               <p>Every {model.name} is built to the same steel-framed specification, backed by our 10-year builder's guarantee.</p>
             </div>
-            <ul className="model-inclusion-grid">
+            <ul className="model-inclusion-grid rv rv-d1">
               {STANDARD_INCLUSIONS.map((item) => (
                 <li key={item} className="model-inclusion">
                   <span aria-hidden="true">
@@ -117,7 +119,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         <section className="model-floorplan" aria-label="Floor plan">
           <div className="wrap">
-            <div className="model-section-head">
+            <div className="model-section-head rv">
               <p className="eyebrow">Floor plan</p>
               <h2 className="display">Concept layout</h2>
             </div>
@@ -144,11 +146,11 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         <section className="model-service t-paper" aria-label="What's included with every build">
           <div className="wrap">
-            <div className="model-section-head">
+            <div className="model-section-head rv">
               <p className="eyebrow">Every Foundry home includes</p>
               <h2 className="display">A fully managed build</h2>
             </div>
-            <div className="granny-feature-grid">
+            <div className="granny-feature-grid rv rv-d1">
               {SERVICE_INCLUSIONS.map((item) => (
                 <div className="granny-feature" key={item}>
                   <span>{item}</span>
@@ -160,7 +162,7 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
 
         <section className="model-gallery" aria-label="Gallery">
           <div className="wrap">
-            <div className="model-section-head">
+            <div className="model-section-head rv">
               <p className="eyebrow">Gallery</p>
               <h2 className="display">Indicative imagery</h2>
               <p>Photos shown are indicative only and do not depict the finished {model.name}.</p>

@@ -1,7 +1,66 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Lightbox from '@/components/Lightbox'
+
+const projects = [
+  {
+    src: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png',
+    alt: 'Steel-framed family home, dark cladding',
+    width: 1200,
+    height: 900,
+    label: 'Family home · Bay of Plenty',
+    title: 'The Ridgeline',
+  },
+  {
+    src: '/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR01---Living.jpg',
+    alt: "Light-filled open plan kitchen and living, Foundry family home",
+    width: 1200,
+    height: 1500,
+    label: "Interior · Artist's impression",
+    title: 'The Foundry Interior',
+  },
+  {
+    src: '/assets/Internal Renders/25-4721-Foundry-Homes-Standard-Range---51-IR01---Living.jpg',
+    alt: 'Modern kitchen with stone bench',
+    width: 1200,
+    height: 900,
+    label: 'Family home · Waikato',
+    title: 'The Foundry 90',
+  },
+  {
+    src: '/assets/Stock Imagery/granny_flat_01.jpeg',
+    alt: 'Cedar and black granny flat exterior',
+    width: 1200,
+    height: 900,
+    label: 'Granny flat · Auckland',
+    title: 'The Cedar 60',
+  },
+  {
+    src: '/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR02---Living.jpg',
+    alt: 'Lounge with floor to ceiling glazing',
+    width: 1200,
+    height: 900,
+    label: 'Custom build · Tauranga',
+    title: 'Glasshouse',
+  },
+  {
+    src: '/assets/Foundry Products (houses)/custom_design_01.jpeg',
+    alt: 'Architectural home at dusk with pool',
+    width: 1200,
+    height: 900,
+    label: 'Custom build · Northland',
+    title: 'Dusk House',
+  },
+]
+
+const revealDelay = ['', ' rv-d1', ' rv-d2']
 
 export default function Projects() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
   return (
     <section className="projects" id="projects" aria-label="Recent projects">
       <div className="wrap">
@@ -18,38 +77,39 @@ export default function Projects() {
           </Link>
         </div>
         <div className="masonry">
-          <div className="proj rv">
-            <Image src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png" alt="Steel-framed family home, dark cladding" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Family home · Bay of Plenty</span><h3>The Ridgeline</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
-          <div className="proj rv rv-d1">
-            <Image src="/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR01---Living.jpg" alt="Light-filled open plan kitchen and living, Foundry family home" width={1200} height={1500} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Interior · Artist&apos;s impression</span><h3>The Foundry Interior</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
-          <div className="proj rv rv-d2">
-            <Image src="/assets/Internal Renders/25-4721-Foundry-Homes-Standard-Range---51-IR01---Living.jpg" alt="Modern kitchen with stone bench" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Family home · Waikato</span><h3>The Foundry 90</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
-          <div className="proj rv">
-            <Image src="/assets/Stock Imagery/granny_flat_01.jpeg" alt="Cedar and black granny flat exterior" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Granny flat · Auckland</span><h3>The Cedar 60</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
-          <div className="proj rv rv-d1">
-            <Image src="/assets/Internal Renders/25-4731-Foundry-Homes-Standard-Range---73-IR02---Living.jpg" alt="Lounge with floor to ceiling glazing" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Custom build · Tauranga</span><h3>Glasshouse</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
-          <div className="proj rv rv-d2">
-            <Image src="/assets/Foundry Products (houses)/custom_design_01.jpeg" alt="Architectural home at dusk with pool" width={1200} height={900} loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw" />
-            <div className="proj__info"><span>Custom build · Northland</span><h3>Dusk House</h3></div>
-            <div className="proj__plus">+</div>
-          </div>
+          {projects.map((project, i) => (
+            <button
+              type="button"
+              className={`proj rv${revealDelay[i % 3]}`}
+              key={project.src}
+              onClick={() => setActiveIndex(i)}
+              aria-label={`Open image: ${project.title} — ${project.label}`}
+            >
+              <Image
+                src={project.src}
+                alt={project.alt}
+                width={project.width}
+                height={project.height}
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw"
+              />
+            </button>
+          ))}
         </div>
       </div>
+
+      {activeIndex !== null && (
+        <Lightbox
+          images={projects.map((project) => ({
+            src: project.src,
+            alt: project.alt,
+            caption: `${project.title} · ${project.label}`,
+          }))}
+          index={activeIndex}
+          onClose={() => setActiveIndex(null)}
+          onNavigate={setActiveIndex}
+        />
+      )}
     </section>
   )
 }

@@ -15,7 +15,7 @@ export type GrannyFlatModel = {
 }
 
 export const STANDARD_INCLUSIONS = [
-  'Light-gauge steel frame and roof trusses — no timber frame',
+  'Light-gauge steel frame and roof trusses - no timber frame',
   'Vertical timber-look cladding (Duragroove / Niagara profile)',
   'Long-run Coloursteel trapezoid roofing',
   'Thermally broken, double-glazed aluminium joinery throughout',
@@ -247,7 +247,7 @@ const modelsWithoutAssets: Omit<GrannyFlatModel, 'floorPlanImage' | 'brochurePdf
     bathrooms: 2,
     internalArea: 95.65,
     externalArea: 99.57,
-    tagline: 'Our largest model — a full four-bedroom, two-bathroom home for families who need the extra space.',
+    tagline: 'Our largest model - a full four-bedroom, two-bathroom home for families who need the extra space.',
     heroImage: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_99.jpeg',
     galleryImages: [
       '/assets/SHOWHOME/Foundry_Homes_Showhome_23.jpg',

@@ -5,9 +5,11 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import Loader from '@/components/Loader'
 import { activeFontCssVariables, googleFontHref } from '@/lib/fontTheme'
 import { getFontPreviewCss } from '@/lib/fontPreviewDemo'
+import { SITE_URL } from '@/lib/siteUrl'
 
 export const metadata: Metadata = {
-  title: 'Foundry Homes — Steel-Framed Homes, Built Your Way',
+  metadataBase: new URL(SITE_URL),
+  title: 'Foundry Homes - Steel-Framed Homes, Built Your Way',
   description: 'Design and build a steel-framed home or granny flat with clear pricing, trusted NZ suppliers, and a process you can rely on from start to finish.',
 }
 

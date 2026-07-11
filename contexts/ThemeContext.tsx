@@ -49,7 +49,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     html.style.colorScheme = nextTheme
     setTheme(nextTheme)
     if (persist) localStorage.setItem('foundry-theme', nextTheme)
-    window.setTimeout(() => html.classList.remove('is-switching-theme'), 400)
+    window.setTimeout(() => html.classList.remove('is-switching-theme'), 500)
   }
 
   const toggleTheme = () => {

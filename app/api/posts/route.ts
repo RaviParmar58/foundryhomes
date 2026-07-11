@@ -1,8 +1,9 @@
 import { NextRequest } from 'next/server'
-import { PostStatus } from '@prisma/client'
+import { PostStatus, Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { createPostSchema } from '@/lib/validation'
 import { toPostDTO, resolveUniqueSlug } from '@/lib/posts'
+import { sanitizePostContent } from '@/lib/sanitizePostContent'
 import type { ListPostsResponse } from '@/types/blog'
 
 export async function GET(request: NextRequest) {
@@ -12,10 +13,15 @@ export async function GET(request: NextRequest) {
   const page = Math.max(1, Number(searchParams.get('page')) || 1)
   const pageSize = Math.min(100, Math.max(1, Number(searchParams.get('pageSize')) || 9))
 
-  const where: { status?: PostStatus } = {}
+  const where: { status?: PostStatus; publishedAt?: { lte: Date } } = {}
 
   if (statusParam && Object.values(PostStatus).includes(statusParam as PostStatus)) {
     where.status = statusParam as PostStatus
+    // Public requests (filtered to PUBLISHED) shouldn't reveal scheduled
+    // future-dated posts early. Unfiltered admin requests see everything.
+    if (where.status === 'PUBLISHED') {
+      where.publishedAt = { lte: new Date() }
+    }
   }
   const [posts, total] = await Promise.all([
     prisma.post.findMany({
@@ -55,17 +61,16 @@ export async function POST(request: NextRequest) {
   }
 
   const data = parsed.data
-  const slug = await resolveUniqueSlug(data.slug || data.title)
 
-  try {
-    const post = await prisma.post.create({
+  const createWithSlug = (slug: string) =>
+    prisma.post.create({
       data: {
         title: data.title,
         slug,
-        category: 'BUILDING_TIPS',
+        category: data.category,
         tags: data.tags,
         excerpt: data.excerpt,
-        content: data.content,
+        content: sanitizePostContent(data.content),
         featuredImage: data.featuredImage ?? null,
         status: data.status,
         author: 'Foundry Team',
@@ -80,8 +85,26 @@ export async function POST(request: NextRequest) {
       },
     })
 
+  const isUniqueConstraintError = (err: unknown) =>
+    err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002'
+
+  try {
+    const slug = await resolveUniqueSlug(data.slug || data.title)
+    let post
+    try {
+      post = await createWithSlug(slug)
+    } catch (err) {
+      // Lost a race against another concurrent create with the same slug - retry once.
+      if (!isUniqueConstraintError(err)) throw err
+      const retrySlug = await resolveUniqueSlug(data.slug || data.title)
+      post = await createWithSlug(retrySlug)
+    }
+
     return Response.json(toPostDTO(post), { status: 201 })
   } catch (err) {
+    if (isUniqueConstraintError(err)) {
+      return Response.json({ error: 'A post with this slug already exists. Please try again.' }, { status: 409 })
+    }
     console.error('Failed to create post', err)
     return Response.json({ error: 'Internal server error' }, { status: 500 })
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { PostDTO } from '@/types/blog'
 import { fmtDate } from '@/lib/format'
 import { IconPlus, IconEdit, IconExtLink, IconTrash, IconSearch, IconFile } from './icons'
@@ -27,6 +27,46 @@ export function PostsListView({
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState<'all' | 'PUBLISHED' | 'DRAFT'>('all')
   const [deleteSlug, setDeleteSlug] = useState<string | null>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const cancelBtnRef = useRef<HTMLButtonElement>(null)
+  const deleteTriggerRef = useRef<HTMLButtonElement | null>(null)
+
+  const closeDeleteModal = () => setDeleteSlug(null)
+
+  useEffect(() => {
+    if (!deleteSlug) return
+
+    cancelBtnRef.current?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        closeDeleteModal()
+        return
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      deleteTriggerRef.current?.focus()
+    }
+  }, [deleteSlug])
 
   const filtered = posts.filter((p) => {
     const q = search.toLowerCase()
@@ -192,7 +232,7 @@ export function PostsListView({
                   </td>
 
                   <td className="admin-table__mono">
-                    {post.views > 0 ? post.views.toLocaleString() : '—'}
+                    {post.views > 0 ? post.views.toLocaleString() : '-'}
                   </td>
 
                   <td className="admin-table__mono">{fmtDate(post.updatedAt)}</td>
@@ -207,7 +247,7 @@ export function PostsListView({
                       </a>
                       <button
                         className="admin-icon-btn admin-icon-btn--danger"
-                        onClick={() => setDeleteSlug(post.slug)}
+                        onClick={(e) => { deleteTriggerRef.current = e.currentTarget; setDeleteSlug(post.slug) }}
                         title="Delete post"
                         type="button"
                       >
@@ -230,8 +270,8 @@ export function PostsListView({
 
       {/* Delete Confirmation Modal */}
       {deleteSlug && (
-        <div className="admin-modal-bg" onClick={() => setDeleteSlug(null)} role="dialog" aria-modal="true" aria-label="Confirm delete">
-          <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="admin-modal-bg" onClick={closeDeleteModal} role="dialog" aria-modal="true" aria-label="Confirm delete">
+          <div className="admin-modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <div className="admin-modal__icon">
               <IconTrash />
             </div>
@@ -240,7 +280,7 @@ export function PostsListView({
               This action cannot be undone. The post and all its content will be permanently removed.
             </p>
             <div className="admin-modal__actions">
-              <button className="admin-btn" onClick={() => setDeleteSlug(null)} type="button">Cancel</button>
+              <button className="admin-btn" ref={cancelBtnRef} onClick={closeDeleteModal} type="button">Cancel</button>
               <button className="admin-btn admin-btn--danger" onClick={executeDelete} type="button">
                 <IconTrash /> Delete Post
               </button>

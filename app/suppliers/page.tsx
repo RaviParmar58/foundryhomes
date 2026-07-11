@@ -115,7 +115,7 @@ export default function SuppliersPage() {
               <p className="eyebrow rv">Our partners</p>
               <h2 className="display rv rv-d1">Built with trusted New Zealand suppliers</h2>
               <p className="rv rv-d2">
-                Every Foundry home is built using proven NZ materials from suppliers we trust — helping keep quality
+                Every Foundry home is built using proven NZ materials from suppliers we trust - helping keep quality
                 consistent, supply reliable, and pricing stable throughout your build.
               </p>
             </div>

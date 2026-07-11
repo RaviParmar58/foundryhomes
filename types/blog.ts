@@ -1,9 +1,9 @@
-import type { Post, PostStatus } from '@prisma/client'
+import type { Post, PostStatus, Category } from '@prisma/client'
 
-export type { PostStatus }
+export type { PostStatus, Category }
 
 // Serialized shape returned across the wire (Prisma's Date fields become ISO strings)
-export type PostDTO = Omit<Post, 'category' | 'author' | 'createdAt' | 'updatedAt' | 'publishedAt' | 'tags'> & {
+export type PostDTO = Omit<Post, 'author' | 'createdAt' | 'updatedAt' | 'publishedAt' | 'tags'> & {
   tags: string[]
   createdAt: string
   updatedAt: string
@@ -22,7 +22,9 @@ export type PostFormState = {
   content: string
   featuredImage: string | null
   status: PostStatus
+  category: Category
   publishedAt: string | null
+  updatedAt: string | null
 }
 
 export type PostMutationPayload = {
@@ -33,7 +35,9 @@ export type PostMutationPayload = {
   content: string
   featuredImage: string | null
   status: PostStatus
+  category: Category
   publishedAt?: string | null
+  updatedAt?: string | null
 }
 
 export type ListPostsResponse = {

@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { slugify } from '@/lib/slugify'
 
 export const toPostDTO = (post: Post): PostDTO => {
-  const { category: _category, author: _author, ...dto } = post
+  const { author: _author, ...dto } = post
 
   return {
     ...dto,

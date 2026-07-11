@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useFoundryAnimations } from '@/hooks/useFoundryAnimations'
+import { useContactSubmission } from '@/hooks/useContactSubmission'
 import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
@@ -23,6 +24,8 @@ const contactCards = [
 
 export default function ContactPage() {
   useFoundryAnimations()
+  const { fieldErrors, sent, submitting, submitContactForm, toast, clearToast } =
+    useContactSubmission('Contact page form')
 
   return (
     <>
@@ -98,28 +101,43 @@ export default function ContactPage() {
               </div>
             </aside>
 
-            <form className="contact-page-form rv rv-d1" id="quoteForm" noValidate>
+            <form className="contact-page-form rv rv-d1" id="quoteForm" noValidate onSubmit={submitContactForm}>
               <h2 className="display">Contact us</h2>
               <p>Tell us what you are planning. Required fields are marked with an asterisk.</p>
-              <div id="formFields">
+              {toast && (
+                <div className={`form-toast form-toast--${toast.type}`} role="status">
+                  <span>{toast.message}</span>
+                  <button type="button" onClick={clearToast} aria-label="Dismiss notification">x</button>
+                </div>
+              )}
+              <div id="formFields" style={{ display: sent ? 'none' : undefined }}>
+                <input className="form-honeypot" type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                 <div className="contact-form-row">
                   <label>
                     <span>First name</span>
-                    <input type="text" id="fName" name="firstName" placeholder="First name" autoComplete="given-name" />
+                    <input type="text" id="contactFirstName" name="firstName" placeholder="First name" autoComplete="given-name" />
                   </label>
                   <label>
                     <span>Last name</span>
-                    <input type="text" id="lName" name="lastName" placeholder="Last name" autoComplete="family-name" />
+                    <input type="text" id="contactLastName" name="lastName" placeholder="Last name" autoComplete="family-name" />
                   </label>
                 </div>
                 <div className="contact-form-row">
                   <label>
                     <span>Email *</span>
-                    <input type="email" id="email" name="email" placeholder="Email" required autoComplete="email" />
+                    <input
+                      type="email"
+                      id="contactEmail"
+                      name="email"
+                      placeholder="Email"
+                      required
+                      autoComplete="email"
+                      aria-invalid={Boolean(fieldErrors.email)}
+                    />
                   </label>
                   <label>
                     <span>Phone</span>
-                    <input type="tel" id="phone" name="phone" placeholder="Phone" autoComplete="tel" />
+                    <input type="tel" id="contactPhone" name="phone" placeholder="Phone" autoComplete="tel" />
                   </label>
                 </div>
                 <fieldset className="contact-options">
@@ -133,13 +151,20 @@ export default function ContactPage() {
                 </fieldset>
                 <label className="contact-message">
                   <span>Message *</span>
-                  <textarea id="msg" name="message" rows={5} placeholder="Message" required></textarea>
+                  <textarea
+                    id="contactMessage"
+                    name="message"
+                    rows={5}
+                    placeholder="Message"
+                    required
+                    aria-invalid={Boolean(fieldErrors.message)}
+                  ></textarea>
                 </label>
-                <button type="submit" className="btn btn--solid" data-magnet="">
-                  <span>Submit enquiry</span>
+                <button type="submit" className="btn btn--solid" data-magnet="" disabled={submitting}>
+                  <span>{submitting ? 'Sending...' : 'Submit enquiry'}</span>
                 </button>
               </div>
-              <div className="form__ok" id="formOk">
+              <div className={`form__ok${sent ? ' is-show' : ''}`} id="formOk">
                 <b>Enquiry sent</b>
                 <p>Thanks. Your local Foundry team will be in touch within one working day.</p>
               </div>
@@ -150,10 +175,13 @@ export default function ContactPage() {
         <section className="contact-map" aria-label="Foundry Homes locations">
           <div className="wrap contact-map__grid">
             <div className="contact-map__visual rv" aria-hidden="true">
-              <span>North Island</span>
-              <i></i>
-              <i></i>
-              <i></i>
+              <Image
+                className="contact-map__image"
+                src="/assets/Stock Imagery/bay-of-plenty-view-from-mount-maunganui-2026-01-07-05-32-33-utc.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 920px) 100vw, 50vw"
+              />
             </div>
             <div className="contact-map__copy rv rv-d1">
               <p className="eyebrow">Where we build</p>

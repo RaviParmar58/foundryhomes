@@ -16,7 +16,7 @@ export default function Trust() {
           <div className="trust__cell rv rv-d2">
             <div className="trust__num"><span data-count="7">0</span><em>+</em></div>
             <h4>NZ Suppliers</h4>
-            <p>Local loyalty, proven quality. We partner with the best — and we don&apos;t chase cheap.</p>
+            <p>Local loyalty, proven quality. We partner with the best - and we don&apos;t chase cheap.</p>
           </div>
           <div className="trust__cell rv rv-d3">
             <div className="trust__num"><span data-count="1">0</span><em>team</em></div>

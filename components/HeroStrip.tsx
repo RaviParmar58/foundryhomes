@@ -7,7 +7,7 @@ const steps = [
     num: '01',
     label: 'Design',
     title: 'Shaped to your site',
-    desc: 'Plans built around your land, lifestyle, and budget — no off-the-shelf layouts.',
+    desc: 'Plans built around your land, lifestyle, and budget - no off-the-shelf layouts.',
   },
   {
     num: '02',

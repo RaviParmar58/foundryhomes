@@ -1,7 +1,10 @@
 import { NextRequest } from 'next/server'
+import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { updatePostSchema } from '@/lib/validation'
 import { toPostDTO, resolveUniqueSlug } from '@/lib/posts'
+import { sanitizePostContent } from '@/lib/sanitizePostContent'
+import { deleteBlobIfManaged } from '@/lib/blobStorage'
 
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -31,6 +34,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   }
 
   const data = parsed.data
+
+  if (data.updatedAt !== existing.updatedAt.toISOString()) {
+    return Response.json(
+      { error: 'This post was changed elsewhere since you loaded it. Please refresh and try again.' },
+      { status: 409 }
+    )
+  }
+
   const nextSlug = data.slug === existing.slug ? existing.slug : await resolveUniqueSlug(data.slug, existing.id)
 
   const publishedAt =
@@ -42,23 +53,46 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         ? new Date()
         : existing.publishedAt
 
-  try {
-    const post = await prisma.post.update({
+  const updateWithSlug = (slug: string) =>
+    prisma.post.update({
       where: { id: existing.id },
       data: {
         title: data.title,
-        slug: nextSlug,
+        slug,
         tags: data.tags,
         excerpt: data.excerpt,
-        content: data.content,
+        content: sanitizePostContent(data.content),
         featuredImage: data.featuredImage ?? null,
         status: data.status,
+        category: data.category,
         publishedAt,
       },
     })
 
+  const isUniqueConstraintError = (err: unknown) =>
+    err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002'
+
+  try {
+    let post
+    try {
+      post = await updateWithSlug(nextSlug)
+    } catch (err) {
+      // Lost a race against another concurrent update/create claiming the same slug - retry once.
+      if (!isUniqueConstraintError(err) || nextSlug === existing.slug) throw err
+      const retrySlug = await resolveUniqueSlug(data.slug, existing.id)
+      post = await updateWithSlug(retrySlug)
+    }
+
+    const nextFeaturedImage = data.featuredImage ?? null
+    if (existing.featuredImage && existing.featuredImage !== nextFeaturedImage) {
+      await deleteBlobIfManaged(existing.featuredImage)
+    }
+
     return Response.json(toPostDTO(post))
   } catch (err) {
+    if (isUniqueConstraintError(err)) {
+      return Response.json({ error: 'A post with this slug already exists. Please try again.' }, { status: 409 })
+    }
     console.error('Failed to update post', err)
     return Response.json({ error: 'Internal server error' }, { status: 500 })
   }
@@ -71,6 +105,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
 
   try {
     await prisma.post.delete({ where: { id: existing.id } })
+    await deleteBlobIfManaged(existing.featuredImage)
     return Response.json({ success: true })
   } catch (err) {
     console.error('Failed to delete post', err)

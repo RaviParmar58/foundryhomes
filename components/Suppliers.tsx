@@ -1,33 +1,15 @@
+import Image from 'next/image'
+
+// Same partner list, logo assets, and card design as the Suppliers page
+// "Our partners" section (app/suppliers/page.tsx) so the two stay in sync.
 const partnerLogos = [
-  {
-    name: "Evolve Architecture",
-    src: "/assets/partner_logo/Evolve_logo.webp",
-  },
-  {
-    name: "Greenframe",
-    src: "/assets/partner_logo/Greenframe_Logo_White.webp",
-    className: "logo-cell--greenframe",
-  },
-  {
-    name: "NZ Windows",
-    src: "/assets/partner_logo/NZ-windows-logo-1.png.webp",
-  },
-  {
-    name: "Carpet Court",
-    src: "/assets/partner_logo/carpet-court.png",
-  },
-  {
-    name: "Steel & Tube",
-    src: "/assets/partner_logo/S&T-Logo-Master-Red-1.jpg",
-  },
-  {
-    name: "Mitre 10",
-    src: "/assets/partner_logo/mitre_10_logo.svg",
-  },
-  {
-    name: "Mico",
-    src: "/assets/partner_logo/mico_logo_black.svg",
-  },
+  { name: 'Evolve Architecture', logo: '/assets/logos/suppliers/evolve-architecture.png' },
+  { name: 'Green Frame', logo: '/assets/logos/suppliers/greenframe.png' },
+  { name: 'NZ Windows', logo: '/assets/logos/suppliers/nz-windows.png' },
+  { name: 'Carpet Court', logo: '/assets/logos/suppliers/carpet-court.webp' },
+  { name: 'Steel & Tube', logo: '/assets/logos/suppliers/steel-and-tube.webp' },
+  { name: 'Mitre 10', logo: '/assets/logos/suppliers/mitre-10.jpg' },
+  { name: 'Mico', logo: '/assets/logos/suppliers/mico.png' },
 ]
 
 export default function Suppliers() {
@@ -39,10 +21,16 @@ export default function Suppliers() {
         <p className="lede rv rv-d2">
           Your home is built using proven NZ materials from suppliers we trust - helping ensure consistent quality, reliable supply and stable pricing throughout your build.
         </p>
-        <div className="logo-wall rv rv-d2">
-          {partnerLogos.map((logo) => (
-            <div className={`logo-cell ${logo.className ?? ""}`} key={logo.name}>
-              <img src={logo.src} alt={`${logo.name} logo`} loading="lazy" />
+        <div className="supplier-logo-grid home-partner-grid rv rv-d2">
+          {partnerLogos.map((partner) => (
+            <div className="supplier-logo-card" key={partner.name}>
+              <Image
+                src={partner.logo}
+                alt={`${partner.name} logo`}
+                width={160}
+                height={64}
+                style={{ objectFit: 'contain', width: '100%', height: 'auto', maxHeight: 44 }}
+              />
             </div>
           ))}
         </div>

@@ -91,7 +91,7 @@ export default function FinancePage() {
                 <div className="finance-adviser__portrait">
                   <Image
                     src="/assets/melanie-helsby.jpg"
-                    alt="Melanie Helsby — Director & Financial Adviser"
+                    alt="Melanie Helsby - Director & Financial Adviser"
                     width={500}
                     height={750}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}

@@ -11,7 +11,7 @@ const seedPosts = [
     category: Category.INDUSTRY_INSIGHTS,
     tags: ['steel framing', 'NZ housing', 'innovation'],
     excerpt:
-      'Steel framing is redefining modern home construction across New Zealand — stronger, straighter, and built to last a lifetime.',
+      'Steel framing is redefining modern home construction across New Zealand - stronger, straighter, and built to last a lifetime.',
     content:
       '<p>Steel framing is redefining modern home construction across New Zealand. From coastal homes battling salt air to urban builds demanding precision, the shift away from timber is accelerating.</p><h2>Why Now?</h2><p>The combination of material science improvements, supply chain maturity, and growing builder awareness has made steel the material of choice for forward-thinking builders.</p>',
     featuredImage: '/assets/images/homes/laura-cleffmann-MMQwPNWZbUM-unsplash.jpg',
@@ -28,7 +28,7 @@ const seedPosts = [
     excerpt:
       "From coastal salt air to alpine freeze-thaw cycles, NZ conditions test every building material. Here's why steel consistently wins.",
     content:
-      "<p>From coastal salt air to alpine freeze-thaw cycles, NZ conditions test every building material.</p><h2>The Case for Steel</h2><p>Steel doesn't warp, twist, or shrink — meaning your doors keep closing and your walls stay straight, year after year.</p>",
+      "<p>From coastal salt air to alpine freeze-thaw cycles, NZ conditions test every building material.</p><h2>The Case for Steel</h2><p>Steel doesn't warp, twist, or shrink - meaning your doors keep closing and your walls stay straight, year after year.</p>",
     featuredImage: '/assets/images/homes/tuaans-nDULbGdEwDM-unsplash.jpg',
     status: PostStatus.PUBLISHED,
     author: 'James R.',
@@ -58,7 +58,7 @@ const seedPosts = [
     excerpt:
       'Our finance partner Autumn Financial breaks down what every Kiwi builder should know before signing.',
     content:
-      "<p>Finance for your Foundry build — we've partnered with Autumn Financial to make this as straightforward as possible.</p>",
+      "<p>Finance for your Foundry build - we've partnered with Autumn Financial to make this as straightforward as possible.</p>",
     featuredImage: '/assets/images/homes/point3d-commercial-imaging-ltd-sXMmFigM3p4-unsplash.jpg',
     status: PostStatus.DRAFT,
     author: 'Melanie A.',
@@ -71,7 +71,7 @@ const seedPosts = [
     category: Category.BUILDING_TIPS,
     tags: ['building process', 'consent', 'NZ build'],
     excerpt:
-      'Consent, contract, construction — we walk you through every stage from first concept to handover day.',
+      'Consent, contract, construction - we walk you through every stage from first concept to handover day.',
     content: '<p>The building process in New Zealand is well-structured once you understand each stage.</p>',
     featuredImage: '/assets/images/homes/phil-hearing-6lvui3Ak-eA-unsplash.jpg',
     status: PostStatus.DRAFT,
@@ -80,7 +80,7 @@ const seedPosts = [
     publishedAt: null,
   },
   {
-    title: 'Modern Family Home in Whangarei — Case Study',
+    title: 'Modern Family Home in Whangarei - Case Study',
     slug: 'family-home-whangarei-case-study',
     category: Category.CASE_STUDIES,
     tags: ['case study', 'Whangarei', 'family home'],
