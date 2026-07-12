@@ -35,13 +35,6 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
   const data = parsed.data
 
-  if (data.updatedAt !== existing.updatedAt.toISOString()) {
-    return Response.json(
-      { error: 'This post was changed elsewhere since you loaded it. Please refresh and try again.' },
-      { status: 409 }
-    )
-  }
-
   const nextSlug = data.slug === existing.slug ? existing.slug : await resolveUniqueSlug(data.slug, existing.id)
 
   const publishedAt =

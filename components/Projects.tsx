@@ -7,7 +7,7 @@ import Lightbox from '@/components/Lightbox'
 
 const projects = [
   {
-    src: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png',
+    src: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80_new.jpg',
     alt: 'Steel-framed family home, dark cladding',
     width: 1200,
     height: 900,

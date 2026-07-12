@@ -7,18 +7,46 @@ import Navbar from '@/components/Navbar'
 import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 
+// Outline icons from Lucide (lucide.dev, ISC license), inlined so they
+// inherit the teal stroke and need no extra dependency.
 const benefits = [
   {
     title: 'Capturing everything that you want',
     body: 'We can accommodate everything you want in your home in line with your budget.',
+    icon: (
+      <>
+        <path d="M13 5h8" />
+        <path d="M13 12h8" />
+        <path d="M13 19h8" />
+        <path d="m3 17 2 2 4-4" />
+        <path d="m3 7 2 2 4-4" />
+      </>
+    ),
   },
   {
     title: 'Architecturally designed',
     body: 'Foundry Homes Custom homes are architecturally designed without excessive architectural design costs due to our partnership with Evolve.',
+    icon: (
+      <>
+        <path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
+        <path d="m8 6 2-2" />
+        <path d="m18 16 2-2" />
+        <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
+        <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+        <path d="m15 5 4 4" />
+      </>
+    ),
   },
   {
     title: 'A premium sale price',
     body: 'Your Foundry Homes Custom home will be a masterpiece in your chosen subdivision commanding a premium sale price.',
+    icon: (
+      <>
+        <path d="M10.5 3 8 9l4 13 4-13-2.5-6" />
+        <path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z" />
+        <path d="M2 9h20" />
+      </>
+    ),
   },
 ]
 
@@ -87,7 +115,19 @@ export default function CustomBuildsPage() {
         <section className="cb-benefits t-paper" aria-label="Custom build advantages">
           {benefits.map((benefit) => (
             <article className="cb-benefit rv" key={benefit.title}>
-              <span aria-hidden="true"></span>
+              <span aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {benefit.icon}
+                </svg>
+              </span>
               <div>
                 <h2>{benefit.title}</h2>
                 <p>{benefit.body}</p>

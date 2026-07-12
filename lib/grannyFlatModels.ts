@@ -30,12 +30,30 @@ export const STANDARD_INCLUSIONS = [
 ]
 
 export const SERVICE_INCLUSIONS = [
-  'Steel frame construction',
-  'Full council compliance',
-  'Clear price contract',
-  'Architectural design',
-  'NZ trusted suppliers',
-  'Turnkey handover',
+  {
+    title: 'Steel frame construction',
+    body: 'Cold-formed steel framing as standard - stronger, straighter, and free of warp, twist, or pests.',
+  },
+  {
+    title: 'Full council compliance',
+    body: 'We manage consents and compliance from beginning to end, so your build meets every council requirement.',
+  },
+  {
+    title: 'Clear price contract',
+    body: 'A fixed price contract with a clear specification - no vague allowances, no surprises.',
+  },
+  {
+    title: 'Architectural design',
+    body: 'Every plan is designed by Evolve Architecture, our well-established professional design partner.',
+  },
+  {
+    title: 'NZ trusted suppliers',
+    body: 'Built with proven materials from trusted New Zealand suppliers, on every build.',
+  },
+  {
+    title: 'Turnkey handover',
+    body: 'We handle construction and compliance through to handover. You simply get the keys.',
+  },
 ]
 
 export const FLOOR_PLAN_NOTE =
@@ -158,7 +176,7 @@ const modelsWithoutAssets: Omit<GrannyFlatModel, 'floorPlanImage' | 'brochurePdf
     internalArea: 65.92,
     externalArea: 69.0,
     tagline: 'A roomier three-bedroom layout with extra living space, well suited to full-time family living.',
-    heroImage: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_69.png',
+    heroImage: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_69.jpg',
     galleryImages: [
       '/assets/SHOWHOME/Foundry_Homes_Showhome_21.jpg',
       '/assets/SHOWHOME/Foundry_Homes_Showhome_22.jpg',
@@ -212,7 +230,7 @@ const modelsWithoutAssets: Omit<GrannyFlatModel, 'floorPlanImage' | 'brochurePdf
     internalArea: 76.32,
     externalArea: 80.52,
     tagline: 'A larger three-bedroom, two-bathroom home suited to full-time family living on your section.',
-    heroImage: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80.png',
+    heroImage: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_80_new.jpg',
     galleryImages: [
       '/assets/SHOWHOME/Foundry_Homes_Showhome_15.jpg',
       '/assets/SHOWHOME/Foundry_Homes_Showhome_16.jpg',

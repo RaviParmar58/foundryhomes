@@ -24,7 +24,6 @@ export type PostFormState = {
   status: PostStatus
   category: Category
   publishedAt: string | null
-  updatedAt: string | null
 }
 
 export type PostMutationPayload = {
@@ -37,7 +36,6 @@ export type PostMutationPayload = {
   status: PostStatus
   category: Category
   publishedAt?: string | null
-  updatedAt?: string | null
 }
 
 export type ListPostsResponse = {

@@ -8,23 +8,38 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 
 const promises = [
-  'Certainty in quality of product in their home',
-  'Stable pricing',
-  'Reliable supply chains',
-  'Homes built specifically for NZ weather and compliance standards',
+  {
+    title: 'Certainty in the quality of products in their homes',
+    body: "Proven materials from leading NZ suppliers, so you know exactly what's going into your home.",
+  },
+  {
+    title: 'Stable, consistent, and transparent pricing',
+    body: 'Long-standing supplier partnerships keep pricing fair, agreed up front, and free of surprises.',
+  },
+  {
+    title: 'Reliable, consistent, and efficient supply chains',
+    body: 'Established local supply chains mean materials arrive on time and your build keeps moving.',
+  },
+  {
+    title: 'Homes built for NZ weather and compliance standards',
+    body: 'Every home is designed for New Zealand conditions and fully compliant with NZ building standards.',
+  },
 ]
 
 const pillars = [
   {
     title: 'Every plan is architecturally designed',
+    body: 'From our smallest granny flat to a full design & build project, every Foundry home is designed by Evolve Architecture, a well-established professional architectural practice.',
     image: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_51.jpeg',
   },
   {
     title: 'Steel frame. Every home. No exceptions',
+    body: "We don't offer steel as a premium option - it's the standard. Cold-formed steel framing is stronger, straighter, and more durable. It's how we build every single home.",
     image: '/assets/Steel imagery/Foundry_Homes_Steel_framing.jpg',
   },
   {
     title: 'Loyal New Zealand supply chain',
+    body: 'Colorsteel, Innova, Niagara, and Fletcher Steel - we use the same trusted New Zealand suppliers on every build because consistent materials produce consistent results.',
     image: '/assets/Foundry Products (houses)/Foundry_Homes_Foundry_57.jpeg',
   },
 ]
@@ -80,10 +95,16 @@ export default function FoundryPage() {
                 and support for a fair agreed price.
               </p>
             </div>
-            <div className="foundry-promise-grid rv rv-d1">
-              {promises.map((promise) => (
-                <div className="foundry-promise" key={promise}>
-                  <span>{promise}</span>
+            <div className="num-list rv rv-d1">
+              {promises.map((promise, index) => (
+                <div className="num-item" key={promise.title}>
+                  <span className="num-item__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{promise.title}</h3>
+                    <p>{promise.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -117,7 +138,7 @@ export default function FoundryPage() {
           <div className="wrap rv">
             <p>
               Most builders want to build as many homes as possible. <span>We want to build as many as we can do
-              properly.</span> That is a different business, and it leads to a different result.
+                properly.</span> That is a different business, and it leads to a different result.
             </p>
           </div>
         </section>
@@ -183,7 +204,11 @@ export default function FoundryPage() {
                   <i></i><i></i><i></i><i></i>
                 </div>
               )}
-              <h2 className="display">{pillar.title}</h2>
+              <div className="foundry-pillar__content">
+                <h2 className="display">{pillar.title}</h2>
+                {/* Inner span is required for the grid-rows 0fr->1fr height animation */}
+                <p className="foundry-pillar__desc"><span>{pillar.body}</span></p>
+              </div>
             </article>
           ))}
         </section>

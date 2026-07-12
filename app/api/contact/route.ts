@@ -93,10 +93,10 @@ function buildEmail(data: ContactEnquiryInput) {
           <td style="padding:0 0 12px 0">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
               <tr>
-                <td width="150" valign="top" style="padding:14px 16px;border:1px solid #DDE5E2;border-right:0;background:#F6FAF8;color:#5C6A66;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
+                <td width="150" valign="top" class="detail-label" style="padding:14px 16px;border:1px solid #DDE5E2;border-right:0;background:#F6FAF8;color:#5C6A66;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
                   ${escapeHtml(label)}
                 </td>
-                <td valign="top" style="padding:14px 16px;border:1px solid #DDE5E2;background:#FFFFFF;color:#13201D;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;font-weight:500">
+                <td valign="top" class="detail-value" style="padding:14px 16px;border:1px solid #DDE5E2;background:#FFFFFF;color:#13201D;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;font-weight:500">
                   ${label === 'Email' ? `<a href="mailto:${escapeHtml(value)}" style="color:#008080;text-decoration:none;font-weight:700">${escapeHtml(value)}</a>` : escapeHtml(value)}
                 </td>
               </tr>
@@ -113,7 +113,42 @@ function buildEmail(data: ContactEnquiryInput) {
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="x-apple-disable-message-reformatting">
         <title>New Foundry Homes enquiry</title>
+        <style>
+          /* Mobile-only adjustments; desktop clients keep the inline styles.
+             Outlook for Windows ignores this block entirely, which is fine -
+             it always renders the desktop layout. */
+          @media only screen and (max-width:600px) {
+            .header-pad { padding: 24px 20px 22px 20px !important; }
+            .header-title { font-size: 24px !important; }
+            .header-intro { font-size: 14px !important; }
+            .content-pad { padding: 22px 18px 6px 18px !important; }
+            .message-pad { padding: 6px 18px 24px 18px !important; }
+            .footer-pad { padding: 16px 18px !important; }
+            /* Stack each label above its value instead of a fixed 150px column */
+            .detail-label {
+              display: block !important;
+              width: 100% !important;
+              box-sizing: border-box !important;
+              border-right: 1px solid #DDE5E2 !important;
+              border-bottom: 0 !important;
+              padding: 10px 14px 8px 14px !important;
+            }
+            .detail-value {
+              display: block !important;
+              width: 100% !important;
+              box-sizing: border-box !important;
+              border-top: 0 !important;
+              padding: 12px 14px !important;
+              font-size: 16px !important;
+            }
+            .message-box { padding: 16px 14px !important; }
+            /* Full-width tap target */
+            .reply-btn-wrap { width: 100% !important; }
+            .reply-btn { display: block !important; text-align: center !important; padding: 15px 12px !important; }
+          }
+        </style>
       </head>
       <body style="margin:0;padding:0;background:#EEF3F1;color:#13201D">
         <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">
@@ -127,14 +162,14 @@ function buildEmail(data: ContactEnquiryInput) {
                   <td style="padding:0;background:#0E1514">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
                       <tr>
-                        <td style="padding:28px 30px 26px 30px">
+                        <td class="header-pad" style="padding:28px 30px 26px 30px">
                           <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#20A6A1;margin-bottom:12px">
                             Foundry Homes
                           </div>
-                          <h1 style="margin:0;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.02em">
+                          <h1 class="header-title" style="margin:0;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.02em">
                             New website enquiry
                           </h1>
-                          <p style="margin:12px 0 0;color:#B8C4C0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6">
+                          <p class="header-intro" style="margin:12px 0 0;color:#B8C4C0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6">
                             A visitor has submitted the contact form. Reply directly to the sender using the button below.
                           </p>
                         </td>
@@ -143,7 +178,7 @@ function buildEmail(data: ContactEnquiryInput) {
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding:28px 30px 8px 30px;background:#FFFFFF">
+                  <td class="content-pad" style="padding:28px 30px 8px 30px;background:#FFFFFF">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
                       <tr>
                         <td style="padding:0 0 20px 0">
@@ -161,17 +196,17 @@ function buildEmail(data: ContactEnquiryInput) {
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding:8px 30px 30px 30px;background:#FFFFFF">
+                  <td class="message-pad" style="padding:8px 30px 30px 30px;background:#FFFFFF">
                     <h2 style="margin:0 0 12px;color:#13201D;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.3;font-weight:800">
                       Message
                     </h2>
-                    <div style="padding:20px;border:1px solid #DDE5E2;background:#F9FBFA;color:#263633;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;white-space:pre-wrap">
+                    <div class="message-box" style="padding:20px;border:1px solid #DDE5E2;background:#F9FBFA;color:#263633;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;white-space:pre-wrap">
 ${escapeHtml(data.message)}
                     </div>
-                    <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-top:24px">
+                    <table role="presentation" cellpadding="0" cellspacing="0" class="reply-btn-wrap" style="border-collapse:collapse;margin-top:24px">
                       <tr>
                         <td style="background:#008080">
-                          <a href="mailto:${escapeHtml(data.email)}?subject=${encodeURIComponent(`Re: Foundry Homes enquiry - ${formatName(data)}`)}" style="display:inline-block;padding:14px 22px;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">
+                          <a href="mailto:${escapeHtml(data.email)}?subject=${encodeURIComponent(`Re: Foundry Homes enquiry - ${formatName(data)}`)}" class="reply-btn" style="display:inline-block;padding:14px 22px;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">
                             Reply to enquiry
                           </a>
                         </td>
@@ -180,7 +215,7 @@ ${escapeHtml(data.message)}
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding:18px 30px;background:#F6FAF8;border-top:1px solid #DDE5E2;color:#73807C;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6">
+                  <td class="footer-pad" style="padding:18px 30px;background:#F6FAF8;border-top:1px solid #DDE5E2;color:#73807C;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6">
                     This email was generated automatically from the Foundry Homes website contact form.
                   </td>
                 </tr>

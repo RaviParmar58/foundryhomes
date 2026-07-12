@@ -3,7 +3,7 @@ import { ADMIN_SESSION_COOKIE, verifySessionToken } from '@/lib/adminSession'
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/posts', '/api/posts/:path*', '/api/upload', '/api/admin/login'],
+  matcher: ['/admin/:path*', '/api/posts', '/api/posts/:path*', '/api/upload', '/api/upload/:path*', '/api/admin/login'],
 }
 
 const MUTATING_METHODS = new Set(['POST', 'PUT', 'PATCH', 'DELETE'])
@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
   const isAdminPage = pathname.startsWith('/admin')
   const isProtectedApi =
     (pathname.startsWith('/api/posts') && MUTATING_METHODS.has(request.method)) ||
-    (pathname === '/api/upload' && request.method === 'POST')
+    (pathname.startsWith('/api/upload') && request.method === 'POST')
 
   if (!isAdminPage && !isProtectedApi) return NextResponse.next()
 

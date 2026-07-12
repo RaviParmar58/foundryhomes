@@ -10,46 +10,75 @@ import Footer from '@/components/Footer'
 const reasons = [
   {
     title: 'Town planning handled',
-    body: 'Our town planning service ensures your granny flat is compliant in all areas.',
+    body: 'Our town planning service ensures full compliance for your granny flat.',
   },
   {
     title: 'Architectural plans',
-    body: 'Architecturally designed plans.',
+    body: 'Architecturally designed plans tailored to your project requirements.',
   },
   {
     title: 'Steel construction',
-    body: 'Superior steel construction.',
+    body: 'Superior steel construction built for lasting strength and durability.',
   },
   {
     title: 'Local trades',
-    body: 'Local trades.',
+    body: 'Experienced local trades delivering quality workmanship throughout.',
   },
   {
     title: 'Transparent pricing',
-    body: 'Transparent pricing.',
+    body: 'Transparent and consistent pricing with no hidden surprises.',
   },
   {
     title: 'Hassle-free delivery',
-    body: 'Hassle free delivery from start to finish.',
+    body: 'Hassle-free delivery from planning through to project completion.',
   },
 ]
 
+// Outline icons from Lucide (lucide.dev, ISC license), inlined so they
+// inherit the teal stroke and need no extra dependency.
 const rules = [
   {
     title: 'Single Storey',
     body: 'Simple, practical dwellings designed for efficient living on one level.',
+    icon: (
+      <>
+        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+        <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </>
+    ),
   },
   {
     title: 'Code Compliant Construction',
     body: 'Built correctly from the start, with the right construction pathway managed.',
+    icon: (
+      <>
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
   },
   {
     title: 'Licensed Professionals Required',
     body: 'Handled by experienced professionals who understand the compliance process.',
+    icon: (
+      <>
+        <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+        <path d="M14 6a6 6 0 0 1 6 6v3" />
+        <path d="M4 15v-3a6 6 0 0 1 6-6" />
+        <rect x="2" y="15" width="20" height="4" rx="1" />
+      </>
+    ),
   },
   {
     title: 'Council Notification Managed',
     body: 'We manage the council notification details so the process stays clear.',
+    icon: (
+      <>
+        <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+        <path d="m9 14 2 2 4-4" />
+      </>
+    ),
   },
 ]
 
@@ -128,10 +157,16 @@ export default function GrannyFlatsPage() {
                 Flat
               </p>
             </div>
-            <div className="granny-feature-grid rv rv-d1">
-              {reasons.map((reason) => (
-                <div className="granny-feature" key={reason.title}>
-                  <span>{reason.body}</span>
+            <div className="num-list rv rv-d1">
+              {reasons.map((reason, index) => (
+                <div className="num-item" key={reason.title}>
+                  <span className="num-item__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{reason.title}</h3>
+                    <p>{reason.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -188,7 +223,19 @@ export default function GrannyFlatsPage() {
             <div className="granny-rule-grid rv rv-d1">
               {rules.map((rule) => (
                 <article className="granny-rule" key={rule.title}>
-                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {rule.icon}
+                    </svg>
+                  </span>
                   <h3>{rule.title}</h3>
                   <p>{rule.body}</p>
                 </article>

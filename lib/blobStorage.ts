@@ -1,9 +1,7 @@
 import { del } from '@vercel/blob'
 import path from 'path'
 import { unlink } from 'fs/promises'
-
-export const isVercelBlobUrl = (val: string): boolean =>
-  /^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//.test(val)
+import { isVercelBlobUrl } from '@/lib/imageSources'
 
 // Local-dev uploads written by /api/upload when no blob store is configured.
 const LOCAL_UPLOAD_PREFIX = '/assets/uploads/'

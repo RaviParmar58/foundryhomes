@@ -12,6 +12,7 @@ import type { PostFormState } from '@/types/blog'
 import { slugify } from '@/lib/slugify'
 import { todayISODate } from '@/lib/format'
 import { CATEGORY_OPTIONS } from '@/lib/categories'
+import { isManagedImageSrc } from '@/lib/imageSources'
 import { ImageUpload } from './ImageUpload'
 
 const INLINE_IMAGE_MIME = /^image\/(jpeg|png|webp|gif)$/
@@ -23,6 +24,40 @@ async function uploadImageFile(file: File): Promise<string> {
   const data = await res.json().catch(() => ({}))
   if (!res.ok) throw new Error(data.error || 'Image upload failed')
   return data.url as string
+}
+
+async function importImageUrl(url: string): Promise<string> {
+  const res = await fetch('/api/upload/import', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url }),
+  })
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(data.error || 'Image import failed')
+  return data.url as string
+}
+
+// Positions of every image node currently using this src (fresh scan, since
+// awaited uploads mean the doc can shift under us between steps).
+function imagePositionsBySrc(view: EditorView, src: string): number[] {
+  const positions: number[] = []
+  view.state.doc.descendants((node, pos) => {
+    if (node.type.name === 'image' && node.attrs.src === src) positions.push(pos)
+  })
+  return positions
+}
+
+function firstExternalImageSrc(view: EditorView, skip: Set<string>): string | null {
+  let found: string | null = null
+  view.state.doc.descendants((node) => {
+    if (found) return false
+    if (node.type.name === 'image') {
+      const src = String(node.attrs.src || '')
+      if (src && !isManagedImageSrc(src) && !skip.has(src)) found = src
+    }
+    return !found
+  })
+  return found
 }
 
 function Toolbar({
@@ -201,28 +236,82 @@ export function PostEditorView({
     []
   )
 
+  /* Pasting rich text copied from another site inserts <img> nodes that
+     still point at the source site. The server sanitizer drops any image we
+     don't host, so those pictures would silently vanish on save - instead,
+     re-host each one through /api/upload/import and rewrite the node's src
+     in place. Images that can't be imported are removed immediately (with
+     an error shown) rather than disappearing later without explanation. */
+  const importExternalImages = useCallback(async (view: EditorView) => {
+    const skip = new Set<string>()
+    if (!firstExternalImageSrc(view, skip)) return
+
+    setImageError(null)
+    setImageUploading(true)
+    try {
+      for (let src = firstExternalImageSrc(view, skip); src; src = firstExternalImageSrc(view, skip)) {
+        let newUrl: string | null = null
+        try {
+          newUrl = await importImageUrl(src)
+        } catch (e) {
+          setImageError(e instanceof Error ? e.message : 'Image import failed')
+        }
+        skip.add(src)
+
+        if (newUrl) {
+          for (const pos of imagePositionsBySrc(view, src)) {
+            const node = view.state.doc.nodeAt(pos)
+            if (node) view.dispatch(view.state.tr.setNodeMarkup(pos, undefined, { ...node.attrs, src: newUrl }))
+          }
+        } else {
+          // Delete back-to-front so earlier positions stay valid.
+          for (const pos of imagePositionsBySrc(view, src).reverse()) {
+            const node = view.state.doc.nodeAt(pos)
+            if (node) view.dispatch(view.state.tr.delete(pos, pos + node.nodeSize))
+          }
+        }
+      }
+    } finally {
+      setImageUploading(false)
+    }
+  }, [])
+
   const handleEditorPaste = useCallback(
     (view: EditorView, event: ClipboardEvent) => {
       const files = Array.from(event.clipboardData?.files ?? [])
-      if (!files.some((f) => INLINE_IMAGE_MIME.test(f.type))) return false
-      event.preventDefault()
-      void insertImagesIntoEditor(view, files)
-      return true
+      if (files.some((f) => INLINE_IMAGE_MIME.test(f.type))) {
+        event.preventDefault()
+        void insertImagesIntoEditor(view, files)
+        return true
+      }
+      // Rich-text paste: let ProseMirror insert it as usual, then re-host
+      // any images that point outside our storage.
+      if (event.clipboardData?.getData('text/html').includes('<img')) {
+        setTimeout(() => void importExternalImages(view), 0)
+      }
+      return false
     },
-    [insertImagesIntoEditor]
+    [insertImagesIntoEditor, importExternalImages]
   )
 
   const handleEditorDrop = useCallback(
     (view: EditorView, event: DragEvent, _slice: unknown, moved: boolean) => {
       if (moved) return false
       const files = Array.from(event.dataTransfer?.files ?? [])
-      if (!files.some((f) => INLINE_IMAGE_MIME.test(f.type))) return false
-      event.preventDefault()
-      const coords = view.posAtCoords({ left: event.clientX, top: event.clientY })
-      void insertImagesIntoEditor(view, files, coords?.pos)
-      return true
+      if (files.some((f) => INLINE_IMAGE_MIME.test(f.type))) {
+        event.preventDefault()
+        const coords = view.posAtCoords({ left: event.clientX, top: event.clientY })
+        void insertImagesIntoEditor(view, files, coords?.pos)
+        return true
+      }
+      // Dropped rich text (e.g. a selection dragged in from another page)
+      // gets the same external-image import treatment as paste.
+      if (event.dataTransfer?.getData('text/html').includes('<img')) {
+        setTimeout(() => void importExternalImages(view), 0)
+      }
+      return false
     },
-    [insertImagesIntoEditor]
+    [insertImagesIntoEditor, importExternalImages]
   )
 
   const set = <K extends keyof PostFormState>(key: K, value: PostFormState[K]) =>
@@ -331,6 +420,12 @@ export function PostEditorView({
   const charCount = form.excerpt.length
 
   const handleSave = async () => {
+    // Saving mid-import would persist <img> srcs the sanitizer strips.
+    if (imageUploading) {
+      setImageError('Please wait for images to finish uploading before saving.')
+      return
+    }
+
     const fieldErrors = validatePostForm(form)
     setErrors(fieldErrors)
 

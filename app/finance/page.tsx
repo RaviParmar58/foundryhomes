@@ -61,8 +61,8 @@ export default function FinancePage() {
               <Image
                 src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_59.webp"
                 alt="Modern Foundry-style home exterior with deck"
-                width={1300}
-                height={900}
+                fill
+                style={{ objectFit: 'cover' }}
                 priority
                 sizes="(max-width: 920px) 100vw, 56vw"
               />
@@ -94,7 +94,7 @@ export default function FinancePage() {
                     alt="Melanie Helsby - Director & Financial Adviser"
                     width={500}
                     height={750}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
                     sizes="(max-width: 920px) 100vw, 280px"
                   />
                 </div>
@@ -102,7 +102,7 @@ export default function FinancePage() {
                 <p>Director &amp; financial adviser</p>
                 <small>20 years banking experience</small>
                 <div className="finance-rating" aria-label="5.0 Google reviews">
-                  <span>5 stars</span>
+                  <span>★★★★★</span>
                   <b>5.0</b>
                   <small>Google Reviews</small>
                 </div>

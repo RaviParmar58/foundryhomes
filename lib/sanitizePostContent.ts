@@ -1,5 +1,5 @@
 import sanitizeHtml from 'sanitize-html'
-import { isVercelBlobUrl } from '@/lib/blobStorage'
+import { isManagedImageSrc } from '@/lib/imageSources'
 
 // Matches the formatting the admin rich-text toolbar can actually produce
 // (bold/italic/underline, headings, lists, blockquote, links, inline images)
@@ -14,12 +14,6 @@ const ALLOWED_TAGS = [
   'img',
 ]
 
-// Inline images may only point at files we manage: uploads (Vercel Blob or
-// the local-dev /assets/uploads fallback) and bundled site assets. Anything
-// else (external hotlinks, data: URIs) is dropped with the tag.
-const isAllowedImageSrc = (src: string): boolean =>
-  src.startsWith('/assets/') || isVercelBlobUrl(src)
-
 export function sanitizePostContent(html: string): string {
   return sanitizeHtml(html, {
     allowedTags: ALLOWED_TAGS,
@@ -29,8 +23,11 @@ export function sanitizePostContent(html: string): string {
     },
     allowedSchemes: ['http', 'https', 'mailto'],
     allowedSchemesByTag: { img: ['https'] },
+    // Inline images may only point at files we manage; the admin editor
+    // imports pasted external images into our storage before save, so
+    // anything still external here (or a data: URI) is dropped with the tag.
     exclusiveFilter: (frame) =>
-      frame.tag === 'img' && !isAllowedImageSrc(String(frame.attribs?.src || '')),
+      frame.tag === 'img' && !isManagedImageSrc(String(frame.attribs?.src || '')),
     transformTags: {
       a: sanitizeHtml.simpleTransform('a', { rel: 'noopener noreferrer nofollow' }),
     },

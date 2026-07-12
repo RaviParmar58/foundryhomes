@@ -44,24 +44,27 @@ export default function SuppliersPage() {
 
       <main className="suppliers-page" id="top">
         <section className="suppliers-hero" aria-label="Foundry suppliers">
-          <div className="wrap suppliers-hero__grid">
-            <div className="suppliers-hero__copy rv">
+          <div className="suppliers-hero__copy">
+            <div className="suppliers-hero__inner rv">
               <p className="eyebrow">Supporting New Zealand</p>
-              <h1 className="display">At Foundry Homes loyalty matters</h1>
+              <h1 className="display">
+                At Foundry Homes <span>loyalty matters</span>
+              </h1>
               <p>
                 At Foundry Homes we have made a clear commitment to work alongside trusted New Zealand suppliers.
               </p>
             </div>
-            <div className="suppliers-hero__image rv rv-d1">
-              <Image
-                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_52.jpeg"
-                alt="Modern Foundry-style home exterior with timber deck"
-                width={1300}
-                height={900}
-                priority
-                sizes="(max-width: 920px) 100vw, 56vw"
-              />
-            </div>
+          </div>
+          <div className="suppliers-hero__media rv rv-d1">
+            <Image
+              src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_52.jpeg"
+              alt="Modern Foundry-style home exterior with timber deck"
+              width={1600}
+              height={1000}
+              priority
+              sizes="(max-width: 920px) 100vw, 58vw"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
         </section>
 

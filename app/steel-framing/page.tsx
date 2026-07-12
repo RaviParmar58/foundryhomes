@@ -10,27 +10,27 @@ import Footer from '@/components/Footer'
 
 const benefits = [
   {
-    title: 'Superior structural strength',
+    title: 'Superior structural strength and lasting performance',
     body: 'Cold-formed steel creates a stronger, straighter frame for long-term residential performance.',
   },
   {
-    title: 'Precision-engineered framing',
+    title: 'Precision-engineered framing for every project',
     body: 'Frames are manufactured to plan, helping every wall, opening, and junction align cleanly on site.',
   },
   {
-    title: 'Reduced movement',
+    title: 'Reduced movement for enhanced structural stability',
     body: 'Steel resists the warping, twisting, and shrinkage that can affect traditional timber framing.',
   },
   {
-    title: 'Consistent build accuracy',
+    title: 'Consistent build accuracy from start to finish',
     body: 'A repeatable frame system helps trades work faster and keeps the finished home sharper.',
   },
   {
-    title: 'Environmental friendliness',
+    title: 'Environmentally responsible building solutions',
     body: 'Steel is recyclable, durable, and reduces material waste through accurate manufacture.',
   },
   {
-    title: 'Time and cost efficiency',
+    title: 'Greater time and cost efficiency',
     body: 'Cleaner assembly and fewer movement issues can help reduce delays, rework, and hidden costs.',
   },
 ]
@@ -133,10 +133,16 @@ export default function SteelFramingPage() {
                 compared to traditional timber framing. For a stronger alternative, our steel-framed homes offer:
               </p>
             </div>
-            <div className="steel-benefits__grid rv rv-d1">
-              {benefits.map((benefit) => (
-                <div className="steel-benefit" key={benefit.title}>
-                  <span>{benefit.title}</span>
+            <div className="num-list rv rv-d1">
+              {benefits.map((benefit, index) => (
+                <div className="num-item" key={benefit.title}>
+                  <span className="num-item__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{benefit.title}</h3>
+                    <p>{benefit.body}</p>
+                  </div>
                 </div>
               ))}
             </div>

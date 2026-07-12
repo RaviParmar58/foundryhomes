@@ -150,10 +150,16 @@ export default async function ModelPage({ params }: { params: Promise<{ slug: st
               <p className="eyebrow">Every Foundry home includes</p>
               <h2 className="display">A fully managed build</h2>
             </div>
-            <div className="granny-feature-grid rv rv-d1">
-              {SERVICE_INCLUSIONS.map((item) => (
-                <div className="granny-feature" key={item}>
-                  <span>{item}</span>
+            <div className="num-list rv rv-d1">
+              {SERVICE_INCLUSIONS.map((item, index) => (
+                <div className="num-item" key={item.title}>
+                  <span className="num-item__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
                 </div>
               ))}
             </div>

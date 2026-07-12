@@ -23,7 +23,6 @@ const emptyForm = (): PostFormState => ({
   status: 'DRAFT',
   category: 'BUILDING_TIPS',
   publishedAt: null,
-  updatedAt: null,
 })
 
 const toFormState = (post: PostDTO): PostFormState => ({
@@ -37,7 +36,6 @@ const toFormState = (post: PostDTO): PostFormState => ({
   status: post.status,
   category: post.category,
   publishedAt: post.publishedAt,
-  updatedAt: post.updatedAt,
 })
 
 const toPayload = (form: PostFormState): PostMutationPayload => ({
@@ -49,7 +47,6 @@ const toPayload = (form: PostFormState): PostMutationPayload => ({
   featuredImage: form.featuredImage,
   status: form.status,
   category: form.category,
-  updatedAt: form.updatedAt,
   publishedAt: form.publishedAt,
 })
 
@@ -145,7 +142,6 @@ export default function AdminPage() {
       featuredImage: post.featuredImage,
       status: nextStatus,
       category: post.category,
-      updatedAt: post.updatedAt,
       publishedAt: nextStatus === 'PUBLISHED' && !post.publishedAt ? todayISODate() : post.publishedAt,
     }
     try {

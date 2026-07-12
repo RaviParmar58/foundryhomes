@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { PostStatus, Category } from '@prisma/client'
-import { isVercelBlobUrl } from '@/lib/blobStorage'
+import { isVercelBlobUrl } from '@/lib/imageSources'
 
 const slugField = z
   .string()
@@ -52,7 +52,6 @@ export const updatePostSchema = z.object({
   status: z.nativeEnum(PostStatus),
   category: z.nativeEnum(Category),
   publishedAt: publishedAtField,
-  updatedAt: z.string().min(1, 'Missing updatedAt'),
 })
 
 export type CreatePostInput = z.infer<typeof createPostSchema>

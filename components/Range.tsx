@@ -44,7 +44,7 @@ export default function Range() {
             <article className="range-card">
               <div className="range-card__img">
                 <Image
-                  src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_69.png"
+                  src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_69.jpg"
                   alt=""
                   fill
                   sizes="(max-width: 1080px) 100vw, 42vw"
