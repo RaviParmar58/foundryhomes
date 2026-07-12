@@ -4026,9 +4026,9 @@ body{transition:background-color .35s ease,color .35s ease}
   --btn-hover-bg:#008080;
   --btn-hover-text:#fff;
   --btn-shadow:0 18px 44px rgba(0,0,0,.22);
-  --nav-cta-bg:#F3F1EC;
-  --nav-cta-text:#0E1114;
-  --nav-cta-border:rgba(243,241,236,.88);
+  --nav-cta-bg:#D92D20;
+  --nav-cta-text:#fff;
+  --nav-cta-border:#D92D20;
 }
 [data-theme="light"]{
   --btn-bg:#0E1114;
@@ -4037,9 +4037,9 @@ body{transition:background-color .35s ease,color .35s ease}
   --btn-hover-bg:#008080;
   --btn-hover-text:#fff;
   --btn-shadow:0 18px 40px rgba(31,28,22,.16);
-  --nav-cta-bg:#0E1114;
-  --nav-cta-text:#F7F7F5;
-  --nav-cta-border:#0E1114;
+  --nav-cta-bg:#D92D20;
+  --nav-cta-text:#fff;
+  --nav-cta-border:#D92D20;
 }
 [data-theme="dark"]{
   --btn-bg:#F3F1EC;
@@ -4048,9 +4048,9 @@ body{transition:background-color .35s ease,color .35s ease}
   --btn-hover-bg:#00A3A3;
   --btn-hover-text:#061817;
   --btn-shadow:0 18px 46px rgba(0,0,0,.32);
-  --nav-cta-bg:#F3F1EC;
-  --nav-cta-text:#0E1114;
-  --nav-cta-border:rgba(243,241,236,.9);
+  --nav-cta-bg:#D92D20;
+  --nav-cta-text:#fff;
+  --nav-cta-border:#D92D20;
 }
 .btn{
   isolation:isolate;
@@ -4100,24 +4100,24 @@ body{transition:background-color .35s ease,color .35s ease}
   box-shadow:0 14px 34px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.14)!important;
 }
 .nav .nav__cta::before{
-  background:var(--teal)!important;
+  background:#B42318!important;
 }
 .nav .nav__cta:hover{
   color:#fff!important;
-  border-color:var(--teal)!important;
-  box-shadow:0 18px 44px rgba(0,128,128,.28)!important;
+  border-color:#B42318!important;
+  box-shadow:0 18px 44px rgba(217,45,32,.28)!important;
 }
 [data-theme="dark"] .nav.is-scrolled .nav__cta{
-  background:#F3F1EC!important;
-  color:#0E1114!important;
-  border-color:rgba(243,241,236,.9)!important;
-  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 16px 38px rgba(0,0,0,.42)!important;
+  background:#D92D20!important;
+  color:#fff!important;
+  border-color:#D92D20!important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 16px 38px rgba(217,45,32,.24)!important;
 }
 [data-theme="light"] .nav.is-scrolled .nav__cta{
-  background:#0E1114!important;
-  color:#F7F7F5!important;
-  border-color:#0E1114!important;
-  box-shadow:0 14px 32px rgba(31,28,22,.18)!important;
+  background:#D92D20!important;
+  color:#fff!important;
+  border-color:#D92D20!important;
+  box-shadow:0 14px 32px rgba(217,45,32,.22)!important;
 }
 [data-theme="dark"] .nav .theme-toggle{
   background:rgba(243,241,236,.08);
