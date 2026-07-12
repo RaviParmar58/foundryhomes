@@ -35,8 +35,8 @@ export default function FinancePage() {
 
       <main className="finance-page" id="top">
         <section className="finance-hero" aria-label="Independent finance advice">
-          <div className="wrap finance-hero__grid">
-            <div className="finance-hero__copy rv">
+          <div className="finance-hero__copy">
+            <div className="finance-hero__inner rv">
               <p className="eyebrow">This is Foundry</p>
               <h1 className="display">Independent <span>advice</span></h1>
               <p>
@@ -56,17 +56,18 @@ export default function FinancePage() {
                 </a>
               </div>
             </div>
+          </div>
 
-            <div className="finance-hero__image rv rv-d1">
-              <Image
-                src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_59.webp"
-                alt="Modern Foundry-style home exterior with deck"
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-                sizes="(max-width: 920px) 100vw, 56vw"
-              />
-            </div>
+          <div className="finance-hero__media rv rv-d1">
+            <Image
+              src="/assets/Foundry Products (houses)/Foundry_Homes_Foundry_59.webp"
+              alt="Modern Foundry-style home exterior with deck"
+              width={1600}
+              height={1000}
+              priority
+              sizes="(max-width: 920px) 100vw, 58vw"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
         </section>
 
