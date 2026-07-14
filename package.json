@@ -6,7 +6,8 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "uploads:migrate-to-blob": "tsx scripts/migrate-local-uploads-to-blob.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
